@@ -1,8 +1,8 @@
 /* ==========================================================================
-   KRIZSAN — House System v1.1
-   Refinement pass: quieter, rarer, more timeless. Tokens are locked to
-   the brand brief. Do not introduce colors, type, or motion outside
-   this system without updating the brief itself.
+   MAISON KRIZSAN — House System v1.2
+   Elevation pass: an independent visual house, not a portfolio. Tokens
+   are locked to the brand brief. Do not introduce colors, type, or
+   motion outside this system without updating the brief itself.
    ========================================================================== */
 
 :root {
@@ -299,15 +299,7 @@ button:focus-visible {
   line-height: 1.7;
   max-width: 34rem;
   margin-inline: auto;
-  margin-bottom: 3rem;
   opacity: 0.92;
-}
-
-.entrance__actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 /* ==========================================================================
@@ -332,7 +324,22 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   03 · SELECTED WORKS
+   03 · THE PHILOSOPHY
+   ========================================================================== */
+
+.philosophy {
+  padding-block: var(--section-pad);
+  border-top: 1px solid var(--sand);
+}
+
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ==========================================================================
+   04 · DESTINATIONS
    ========================================================================== */
 
 .works {
@@ -409,7 +416,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   04 · THE COLLECTION
+   05 · THE ARCHIVE
    ========================================================================== */
 
 .collection {
@@ -455,7 +462,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   05 · THE STANDARD
+   06 · THE KRIZSAN STANDARD
    ========================================================================== */
 
 .standard {
@@ -494,17 +501,13 @@ button:focus-visible {
 
 .standard__lead {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+  font-size: clamp(1.3rem, 2.6vw, 1.85rem);
   font-weight: 400;
-  margin-bottom: 1rem;
-  letter-spacing: 0.01em;
-}
-
-.standard__sub {
-  font-size: 0.95rem;
-  color: rgba(244, 240, 232, 0.72);
+  line-height: 1.5;
+  max-width: 42rem;
+  margin-inline: auto;
   margin-bottom: 3.5rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .standard__list {
@@ -544,7 +547,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   06 · JOURNAL PREVIEW
+   07 · THE JOURNAL
    ========================================================================== */
 
 .journal-preview {
@@ -579,7 +582,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   07 · PRIVATE COMMISSIONS
+   08 · PRIVATE COMMISSIONS
    ========================================================================== */
 
 .collaborate {
@@ -596,7 +599,34 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   07 · FOOTER
+   09 · PROVENANCE
+   ========================================================================== */
+
+.provenance {
+  padding-block: clamp(4rem, 8vw, 6rem);
+  border-top: 1px solid var(--sand);
+  text-align: center;
+}
+
+.provenance__mark {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--obsidian);
+  margin-bottom: 1rem;
+}
+
+.provenance__line {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  line-height: 1.9;
+}
+
+/* ==========================================================================
+   10 · FOOTER
    ========================================================================== */
 
 .site-footer {
@@ -703,7 +733,8 @@ button:focus-visible {
     aspect-ratio: 4 / 5;
   }
 
-  .collection__grid {
+  .collection__grid,
+  .philosophy__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
@@ -725,10 +756,5 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
-  .entrance__actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
   .btn { width: 100%; text-align: center; }
 }
