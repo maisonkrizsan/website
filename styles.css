@@ -1,7 +1,8 @@
 /* ==========================================================================
-   MAISON KRIZSAN — House System v1.0
-   Tokens are locked to the brand brief. Do not introduce colors, type,
-   or motion outside this system without updating the brief itself.
+   KRIZSAN — House System v1.1
+   Refinement pass: quieter, rarer, more timeless. Tokens are locked to
+   the brand brief. Do not introduce colors, type, or motion outside
+   this system without updating the brief itself.
    ========================================================================== */
 
 :root {
@@ -17,7 +18,7 @@
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Rhythm */
-  --section-pad: clamp(5rem, 10vw, 10rem);
+  --section-pad: clamp(7rem, 14vw, 14rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
   --max-width-narrow: 760px;
@@ -109,13 +110,13 @@ button:focus-visible {
 .btn {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 1.05rem 2.1rem;
+  padding: 0.9rem 1.8rem;
   border: 1px solid currentColor;
-  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  transition: background-color var(--dur-med) var(--ease), color var(--dur-med) var(--ease);
 }
 
 .btn--ghost-light {
@@ -170,8 +171,9 @@ button:focus-visible {
 
 .nav__mark {
   font-family: var(--font-display);
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--ivory);
   transition: color var(--dur-med) var(--ease);
 }
@@ -252,12 +254,6 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.08);
-  animation: entrance-settle 8s var(--ease) forwards;
-}
-
-@keyframes entrance-settle {
-  to { transform: scale(1); }
 }
 
 .entrance__scrim {
@@ -288,21 +284,12 @@ button:focus-visible {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.entrance__eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-bottom: 1.5rem;
-}
-
 .entrance__title {
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
+  letter-spacing: 0.03em;
+  line-height: 1;
   margin-bottom: 1.75rem;
 }
 
@@ -321,33 +308,6 @@ button:focus-visible {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.entrance__scroll {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 1px;
-  height: 3.5rem;
-  overflow: hidden;
-}
-
-.entrance__scroll-line {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: rgba(244, 240, 232, 0.5);
-  transform-origin: top;
-  animation: scroll-cue 2.2s ease-in-out infinite;
-}
-
-@keyframes scroll-cue {
-  0% { transform: scaleY(0); transform-origin: top; }
-  45% { transform: scaleY(1); transform-origin: top; }
-  55% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
 /* ==========================================================================
@@ -389,9 +349,15 @@ button:focus-visible {
 
 .work {
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   grid-column: span 6;
   grid-row: span 1;
+}
+
+.work__frame {
+  overflow: hidden;
+  flex: 1;
 }
 
 /* Row 1–2: large California Coast (tall, spans 2 rows) beside Central Europe */
@@ -410,25 +376,22 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease);
-}
-
-.work:hover img {
-  transform: scale(1.045);
 }
 
 .work figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 0.9rem;
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ivory);
-  background: linear-gradient(to top, rgba(15,14,12,0.55), transparent);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--stone);
+}
+
+.work figcaption span:first-child {
+  color: var(--obsidian);
+  letter-spacing: 0.02em;
 }
 
 .work--coming .work__placeholder {
@@ -440,7 +403,7 @@ button:focus-visible {
   border: 1px solid var(--sand);
   color: var(--stone);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -451,9 +414,8 @@ button:focus-visible {
 
 .collection {
   padding-block: var(--section-pad);
-  background: #EEE9DD;
+  background: transparent;
   border-top: 1px solid var(--sand);
-  border-bottom: 1px solid var(--sand);
 }
 
 .collection__grid {
@@ -526,6 +488,10 @@ button:focus-visible {
   color: var(--ivory);
 }
 
+.eyebrow--light {
+  color: rgba(244, 240, 232, 0.65);
+}
+
 .standard__lead {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3.4vw, 2.5rem);
@@ -537,26 +503,27 @@ button:focus-visible {
 .standard__sub {
   font-size: 0.95rem;
   color: rgba(244, 240, 232, 0.72);
-  margin-bottom: 2.25rem;
+  margin-bottom: 3.5rem;
   letter-spacing: 0.02em;
 }
 
 .standard__list {
-  display: flex;
-  justify-content: center;
-  gap: clamp(1.25rem, 4vw, 3rem);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(2rem, 4vw, 3rem);
+  text-align: center;
 }
 
-.standard__list li {
+.standard__item dt {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   letter-spacing: 0.02em;
+  margin-bottom: 0.65rem;
   position: relative;
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.85rem;
 }
 
-.standard__list li::after {
+.standard__item dt::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -568,8 +535,51 @@ button:focus-visible {
   opacity: 0.85;
 }
 
+.standard__item dd {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(244, 240, 232, 0.7);
+}
+
 /* ==========================================================================
-   06 · COLLABORATE
+   06 · JOURNAL PREVIEW
+   ========================================================================== */
+
+.journal-preview {
+  padding-block: var(--section-pad);
+  border-top: 1px solid var(--sand);
+}
+
+.journal-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.journal-card {
+  display: block;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--sand);
+  transition: border-color var(--dur-med) var(--ease);
+}
+
+.journal-card:hover {
+  border-color: var(--olive);
+}
+
+.journal-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--obsidian);
+}
+
+/* ==========================================================================
+   07 · PRIVATE COMMISSIONS
    ========================================================================== */
 
 .collaborate {
@@ -634,13 +644,11 @@ button:focus-visible {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+  transition: opacity var(--dur-slow) var(--ease);
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -688,6 +696,10 @@ button:focus-visible {
   .work:nth-child(6) {
     grid-column: 1 / -1;
     grid-row: auto;
+  }
+
+  .work__frame,
+  .work--coming .work__placeholder {
     aspect-ratio: 4 / 5;
   }
 
@@ -697,7 +709,13 @@ button:focus-visible {
   }
 
   .standard__list {
-    gap: 1.25rem 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem 1.5rem;
+  }
+
+  .journal-preview__grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
   }
 
   .footer__inner {

@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maison Krizsan — A Visual House</title>
+  <title>Krizsan — A Visual House</title>
   <meta name="description" content="Maison Krizsan is an independent visual house preserving extraordinary places through photography, film, and editorial storytelling." />
+
+  <meta property="og:title" content="Krizsan" />
+  <meta property="og:description" content="A visual house preserving extraordinary places through photography, film, and story." />
+  <meta property="og:image" content="/assets/images/social-preview.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
 
@@ -20,15 +24,15 @@
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="site-header">
     <nav class="nav">
-      <a href="#" class="nav__mark">Maison Krizsan</a>
+      <a href="#" class="nav__mark">Krizsan</a>
       <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
         <span></span><span></span>
       </button>
       <ul class="nav__links" id="navMenu">
         <li><a href="#house">The House</a></li>
-        <li><a href="#works">Selected Works</a></li>
-        <li><a href="#journal">Journal</a></li>
-        <li><a href="#collaborate">Collaborate</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#journal-preview">Journal</a></li>
+        <li><a href="#commission">Commission</a></li>
       </ul>
     </nav>
   </header>
@@ -42,16 +46,12 @@
       </div>
       <div class="entrance__scrim"></div>
       <div class="entrance__content">
-        <p class="entrance__eyebrow">A Visual House</p>
-        <h1 class="entrance__title">Maison Krizsan</h1>
+        <h1 class="entrance__title">Krizsan</h1>
         <p class="entrance__sub">A visual house preserving extraordinary places<br class="br-desktop" /> through photography, film, and story.</p>
         <div class="entrance__actions">
-          <a href="#works" class="btn btn--ghost-light">Selected Works</a>
-          <a href="#collaborate" class="btn btn--outline-light">Private Collaborations</a>
+          <a href="#works" class="btn btn--ghost-light">Works</a>
+          <a href="#commission" class="btn btn--outline-light">Commission</a>
         </div>
-      </div>
-      <div class="entrance__scroll" aria-hidden="true">
-        <span class="entrance__scroll-line"></span>
       </div>
     </section>
 
@@ -64,8 +64,8 @@
           landscape, craftsmanship, and hospitality continue to reflect something timeless.
         </p>
         <p class="house__text">
-          Maison Krizsan documents these places through photography, film, and editorial
-          storytelling, preserving their atmosphere for generations to come.
+          Maison Krizsan preserves these places through photography, film, and editorial
+          storytelling, holding their atmosphere for generations to come.
         </p>
       </div>
     </section>
@@ -73,37 +73,47 @@
     <!-- ============ 03 · SELECTED WORKS ============ -->
     <section class="works" id="works">
       <div class="container">
-        <p class="eyebrow eyebrow--center">Selected Works</p>
+        <p class="eyebrow eyebrow--center">Works</p>
 
         <div class="works__grid">
           <figure class="work work--tall">
-            <img src="assets/images/work-coast-1.jpg" alt="California coast, architectural study" loading="lazy" />
-            <figcaption>California Coast</figcaption>
+            <div class="work__frame">
+              <img src="assets/images/work-coast-1.jpg" alt="California coast, architectural study" loading="lazy" />
+            </div>
+            <figcaption><span>California Coast</span><span>2026</span></figcaption>
           </figure>
 
           <figure class="work">
-            <img src="assets/images/work-europe-1.jpg" alt="Central Europe, architectural study" loading="lazy" />
-            <figcaption>Central Europe</figcaption>
+            <div class="work__frame">
+              <img src="assets/images/work-europe-1.jpg" alt="Central Europe, architectural study" loading="lazy" />
+            </div>
+            <figcaption><span>Central Europe</span><span>2026</span></figcaption>
           </figure>
 
           <figure class="work">
-            <img src="assets/images/work-med-1.jpg" alt="Mediterranean, architectural study" loading="lazy" />
-            <figcaption>Mediterranean</figcaption>
+            <div class="work__frame">
+              <img src="assets/images/work-med-1.jpg" alt="Mediterranean, architectural study" loading="lazy" />
+            </div>
+            <figcaption><span>Mediterranean</span><span>2026</span></figcaption>
           </figure>
 
           <figure class="work">
-            <img src="assets/images/work-coast-2.jpg" alt="California coast, landscape study" loading="lazy" />
-            <figcaption>California Coast</figcaption>
+            <div class="work__frame">
+              <img src="assets/images/work-coast-2.jpg" alt="California coast, landscape study" loading="lazy" />
+            </div>
+            <figcaption><span>California Coast</span><span>2026</span></figcaption>
           </figure>
 
           <figure class="work work--tall">
-            <img src="assets/images/work-europe-2.jpg" alt="Central Europe, landscape study" loading="lazy" />
-            <figcaption>Central Europe</figcaption>
+            <div class="work__frame">
+              <img src="assets/images/work-europe-2.jpg" alt="Central Europe, landscape study" loading="lazy" />
+            </div>
+            <figcaption><span>Central Europe</span><span>2026</span></figcaption>
           </figure>
 
           <figure class="work work--coming">
             <div class="work__placeholder">
-              <span>Coming Soon</span>
+              <span>Archive</span>
             </div>
           </figure>
         </div>
@@ -113,55 +123,87 @@
     <!-- ============ 04 · THE COLLECTION ============ -->
     <section class="collection" id="collection">
       <div class="container">
-        <p class="eyebrow eyebrow--center">The Collection</p>
+        <p class="eyebrow eyebrow--center">The Archive</p>
 
         <div class="collection__grid">
           <div class="pillar">
             <span class="pillar__mark">I</span>
             <h3 class="pillar__title">Films</h3>
-            <p class="pillar__desc">Cinematic narratives of extraordinary destinations.</p>
+            <p class="pillar__desc">Cinematic narratives preserving the atmosphere of exceptional places.</p>
           </div>
           <div class="pillar">
             <span class="pillar__mark">II</span>
-            <h3 class="pillar__title">Photography</h3>
-            <p class="pillar__desc">Editorial imagery created for remarkable properties.</p>
+            <h3 class="pillar__title">Editions</h3>
+            <p class="pillar__desc">Photographic works and visual collections.</p>
           </div>
           <div class="pillar">
             <span class="pillar__mark">III</span>
             <h3 class="pillar__title">Journal</h3>
-            <p class="pillar__desc">Stories exploring place, architecture, and culture.</p>
+            <p class="pillar__desc">Stories exploring architecture, culture, and place.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ 05 · THE STANDARD ============ -->
-    <section class="standard" id="journal">
+    <section class="standard" id="standard">
       <div class="standard__media" aria-hidden="true">
         <img src="assets/images/texture-stone.jpg" alt="" class="standard__image" />
       </div>
       <div class="standard__scrim"></div>
       <div class="container container--narrow standard__content">
+        <p class="eyebrow eyebrow--center eyebrow--light">The Krizsan Standard</p>
         <p class="standard__lead">Every place carries a story.</p>
         <p class="standard__sub">We seek destinations defined by</p>
-        <ul class="standard__list">
-          <li>Time.</li>
-          <li>Craft.</li>
-          <li>Place.</li>
-          <li>Legacy.</li>
-        </ul>
+        <dl class="standard__list">
+          <div class="standard__item">
+            <dt>Time.</dt>
+            <dd>Places shaped by history.</dd>
+          </div>
+          <div class="standard__item">
+            <dt>Craft.</dt>
+            <dd>Details formed by human hands.</dd>
+          </div>
+          <div class="standard__item">
+            <dt>Place.</dt>
+            <dd>Locations with a distinct spirit.</dd>
+          </div>
+          <div class="standard__item">
+            <dt>Legacy.</dt>
+            <dd>Beauty worth preserving.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <!-- ============ 06 · COLLABORATIONS ============ -->
-    <section class="collaborate" id="collaborate">
+    <!-- ============ 06 · JOURNAL PREVIEW ============ -->
+    <section class="journal-preview" id="journal-preview">
+      <div class="container">
+        <p class="eyebrow eyebrow--center">Journal</p>
+
+        <div class="journal-preview__grid">
+          <a href="#" class="journal-card">
+            <h3 class="journal-card__title">The Architecture of Silence</h3>
+          </a>
+          <a href="#" class="journal-card">
+            <h3 class="journal-card__title">The Mediterranean Estate</h3>
+          </a>
+          <a href="#" class="journal-card">
+            <h3 class="journal-card__title">The Art of Hospitality</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 · PRIVATE COMMISSIONS ============ -->
+    <section class="collaborate" id="commission">
       <div class="container container--narrow">
-        <p class="eyebrow eyebrow--center">Collaborate</p>
+        <p class="eyebrow eyebrow--center">Private Commissions</p>
         <p class="collaborate__text">
-          Maison Krizsan collaborates with exceptional hotels, villas, estates, and
-          destinations whose character transcends trends.
+          Maison Krizsan accepts select commissions from exceptional hotels, villas, estates,
+          and destinations whose character transcends trends.
         </p>
-        <a href="mailto:studio@maisonkrizsan.com" class="btn btn--outline-dark">Begin a Conversation</a>
+        <a href="mailto:studio@maisonkrizsan.com" class="btn btn--outline-dark">Commission Inquiry</a>
       </div>
     </section>
 
@@ -170,13 +212,13 @@
   <!-- ============ 07 · FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer__inner">
-      <p class="footer__mark">Maison Krizsan</p>
+      <p class="footer__mark">Krizsan</p>
       <ul class="footer__links">
-        <li><a href="#journal">Journal</a></li>
+        <li><a href="#journal-preview">Journal</a></li>
         <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
         <li><a href="mailto:studio@maisonkrizsan.com">Studio</a></li>
       </ul>
-      <p class="footer__copy">&copy; 2026 Maison Krizsan</p>
+      <p class="footer__copy">&copy; 2026 Krizsan</p>
     </div>
   </footer>
 

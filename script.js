@@ -43,10 +43,9 @@
 
   /* ---- Scroll reveal ----------------------------------------------------
      Progressive enhancement: sections are fully visible without JS.
-     If supported, IntersectionObserver adds a quiet rise-in on entry. */
-  const revealTargets = document.querySelectorAll(
-    '.house__text, .works__grid, .collection__grid, .standard__content, .collaborate__text, .collaborate .btn'
-  );
+     If supported, IntersectionObserver adds a quiet appearance to
+     photography only — the site does not perform; it simply is. */
+  const revealTargets = document.querySelectorAll('.work, .journal-card');
 
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     revealTargets.forEach(function (el) {
