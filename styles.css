@@ -18,8 +18,11 @@
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Rhythm — whitespace increased ~18% in v1.3, luxury uses air */
-  --section-pad: clamp(8.5rem, 16.5vw, 16.5rem);
+  /* Rhythm — v1.4: v1.3 over-corrected on air (up to 16.5rem/264px per
+     section edge) to the point of adding scroll fatigue without adding
+     perceived luxury. Tightened back to a pace that still breathes but
+     doesn't make the visitor work to get through the page. */
+  --section-pad: clamp(5rem, 9vw, 8.5rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
   --max-width-narrow: 760px;
@@ -367,7 +370,7 @@ button:focus-visible {
 
 .works__intro {
   max-width: 34rem;
-  margin: 0 auto clamp(4rem, 7vw, 6rem);
+  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
   text-align: center;
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2vw, 1.45rem);
@@ -376,29 +379,13 @@ button:focus-visible {
   color: var(--obsidian);
 }
 
-.works__group + .works__group {
-  margin-top: clamp(4.5rem, 8vw, 7rem);
-}
-
-.works__group-head {
-  max-width: 32rem;
-  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
-}
-
-.works__group-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  margin-bottom: 0.65rem;
-}
-
-.works__group-desc {
-  font-size: 0.95rem;
-  color: var(--stone);
-  line-height: 1.7;
-}
-
+/* One continuous grid. No group headers, no category names — the
+   images run as a single unlabeled sequence. Rhythm is carried by
+   repeating triads of the same three span patterns used before
+   (tall-lead-pair / wide-then-split / even-quad), so the page still
+   reads as edited, not just a uniform tile wall. Add a fourth pattern
+   here if a fourth ever becomes useful; three repeating is enough to
+   avoid monotony without inventing a new grid per photo. */
 .works__grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -425,40 +412,32 @@ button:focus-visible {
   object-fit: cover;
 }
 
+/* Single caption line. Material or time fact only — never a mood
+   word standing alone, never a repeated category label. */
 .work figcaption {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
   padding-top: 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
   color: var(--stone);
+  max-width: 34rem;
 }
 
-.work figcaption span:first-child {
-  color: var(--obsidian);
-  letter-spacing: 0.02em;
-}
+/* Pattern A — tall lead beside two stacked. Photos 1–3, 10–12, 19–21... */
+.works__grid .work:nth-child(9n+1) { grid-column: 1 / span 7; grid-row: span 2; }
+.works__grid .work:nth-child(9n+2) { grid-column: 8 / span 5; grid-row: span 1; }
+.works__grid .work:nth-child(9n+3) { grid-column: 8 / span 5; grid-row: span 1; }
 
-/* Stone: one tall lead image beside two stacked. Mirrors the asymmetric
-   editorial layout the brief locks in, scaled to three photographs. */
-.works__grid--stone .work:nth-child(1) { grid-column: 1 / span 7; grid-row: span 2; }
-.works__grid--stone .work:nth-child(2) { grid-column: 8 / span 5; grid-row: span 1; }
-.works__grid--stone .work:nth-child(3) { grid-column: 8 / span 5; grid-row: span 1; }
+/* Pattern B — wide establishing frame, then an even split. */
+.works__grid .work:nth-child(9n+4) { grid-column: 1 / span 12; grid-row: span 1; }
+.works__grid .work:nth-child(9n+5) { grid-column: 1 / span 6; grid-row: span 1; }
+.works__grid .work:nth-child(9n+6) { grid-column: 7 / span 6; grid-row: span 1; }
 
-/* Horizon: wide establishing frame first, then two even panels. Wide
-   shots read best given the actual aspect ratios of these photographs. */
-.works__grid--horizon .work:nth-child(1) { grid-column: 1 / span 12; grid-row: span 1; }
-.works__grid--horizon .work:nth-child(2) { grid-column: 1 / span 6; grid-row: span 1; }
-.works__grid--horizon .work:nth-child(3) { grid-column: 7 / span 6; grid-row: span 1; }
-
-/* Surface: four even panels, close and tactile, no single dominant frame
-   since these are detail shots, not establishing views. */
-.works__grid--surface .work:nth-child(1) { grid-column: 1 / span 3; grid-row: span 1; }
-.works__grid--surface .work:nth-child(2) { grid-column: 4 / span 3; grid-row: span 1; }
-.works__grid--surface .work:nth-child(3) { grid-column: 7 / span 3; grid-row: span 1; }
-.works__grid--surface .work:nth-child(4) { grid-column: 10 / span 3; grid-row: span 1; }
+/* Pattern C — three even panels, close and tactile. */
+.works__grid .work:nth-child(9n+7) { grid-column: 1 / span 4; grid-row: span 1; }
+.works__grid .work:nth-child(9n+8) { grid-column: 5 / span 4; grid-row: span 1; }
+.works__grid .work:nth-child(9n+9) { grid-column: 9 / span 4; grid-row: span 1; }
 
 /* ==========================================================================
    05 · THE ARCHIVE
@@ -798,38 +777,23 @@ button:focus-visible {
 
   .br-desktop { display: none; }
 
+  /* Mobile: single column, every photo full width. The asymmetric
+     desktop grid (tall leads, wide establishing frames, tight triads)
+     collapses to one clean vertical sequence rather than trying to
+     preserve span logic that only works with horizontal room. */
   .works__grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-    gap: 1.25rem;
+    gap: 1.75rem;
   }
 
-  .works__grid--stone .work,
-  .works__grid--horizon .work {
+  .works__grid .work {
     grid-column: 1 / -1 !important;
     grid-row: auto !important;
   }
 
-  .works__grid--stone .work__frame,
-  .works__grid--horizon .work__frame {
+  .works__grid .work__frame {
     aspect-ratio: 4 / 5;
-  }
-
-  /* Surface stays a tight 2x2 on mobile. These are close detail shots
-     meant to read as a cluster, not a vertical scroll of four full-width
-     images, which would feel like a catalog rather than an editorial
-     spread. */
-  .works__grid--surface {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .works__grid--surface .work:nth-child(1) { grid-column: 1 / span 1; grid-row: 1; }
-  .works__grid--surface .work:nth-child(2) { grid-column: 2 / span 1; grid-row: 1; }
-  .works__grid--surface .work:nth-child(3) { grid-column: 1 / span 1; grid-row: 2; }
-  .works__grid--surface .work:nth-child(4) { grid-column: 2 / span 1; grid-row: 2; }
-
-  .works__grid--surface .work__frame {
-    aspect-ratio: 1 / 1;
   }
 
   .collection__grid,
