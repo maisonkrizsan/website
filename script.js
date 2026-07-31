@@ -26,18 +26,37 @@
   const navMenu = document.getElementById('navMenu');
 
   if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function () {
-      const isOpen = navMenu.classList.toggle('is-open');
+    function setMenuState(isOpen) {
+      navMenu.classList.toggle('is-open', isOpen);
+      navToggle.classList.toggle('is-open', isOpen);
       navToggle.setAttribute('aria-expanded', String(isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.body.classList.toggle('nav-locked', isOpen);
+    }
+
+    navToggle.addEventListener('click', function () {
+      const isOpen = !navMenu.classList.contains('is-open');
+      setMenuState(isOpen);
     });
 
     navMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navMenu.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        setMenuState(false);
       });
+    });
+
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
+        setMenuState(false);
+        navToggle.focus();
+      }
+    });
+
+    /* Close the menu on resize back to desktop width, so it never gets
+       stuck open behind the desktop nav layout. */
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860 && navMenu.classList.contains('is-open')) {
+        setMenuState(false);
+      }
     });
   }
 
