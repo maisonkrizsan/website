@@ -18,14 +18,18 @@
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Rhythm — v1.4: v1.3 over-corrected on air (up to 16.5rem/264px per
-     section edge) to the point of adding scroll fatigue without adding
-     perceived luxury. Tightened back to a pace that still breathes but
-     doesn't make the visitor work to get through the page. */
-  --section-pad: clamp(5rem, 9vw, 8.5rem);
+  /* Rhythm — v1.5: House System document locks minimum section spacing
+     at 180-240px explicitly, framing air as content rather than a defect.
+     This supersedes the v1.4 tightening; Mark reviewed the trade-off
+     (more scroll distance) and confirmed the document's spec wins. */
+  --section-pad: clamp(11.25rem, 14vw, 15rem);
+  --space-heading-para: clamp(2.5rem, 4vw, 3.75rem);
+  --space-para-image: clamp(3.75rem, 5.5vw, 5rem);
+  --space-para-para: clamp(1.75rem, 2.5vw, 2.25rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
-  --max-width-narrow: 760px;
+  --max-width-narrow: 40rem;
+  --max-width-copy: 40rem;
 
   /* Motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -35,8 +39,29 @@
 }
 
 /* ==========================================================================
-   RESET
+   SCROLL REVEAL
+   Opacity + a short rise, nothing more. Values locked to the house
+   system spec — do not add scale, blur, or spring easing here.
    ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.4s ease-in-out, transform 1.4s ease-in-out;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -108,41 +133,32 @@ button:focus-visible {
 .eyebrow--center { text-align: center; }
 
 /* ==========================================================================
-   BUTTONS
+   TEXT LINKS
+   Understated links replace boxed buttons sitewide. No fills, no borders,
+   no hover states that call attention to themselves — a hairline
+   underline that fades in, nothing more.
    ========================================================================== */
 
-.btn {
+.text-link {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.9rem 1.8rem;
-  border: 1px solid currentColor;
-  transition: background-color var(--dur-med) var(--ease), color var(--dur-med) var(--ease);
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-slow) var(--ease), opacity var(--dur-slow) var(--ease);
+  opacity: 0.85;
 }
 
-.btn--ghost-light {
-  color: var(--ivory);
-  background: var(--ivory);
-  color: var(--obsidian);
+.text-link:hover {
+  border-color: currentColor;
+  opacity: 1;
 }
-.btn--ghost-light:hover { background: transparent; color: var(--ivory); }
 
-.btn--outline-light {
-  color: var(--ivory);
-  background: transparent;
-  border-color: rgba(244, 240, 232, 0.55);
-}
-.btn--outline-light:hover { background: var(--ivory); color: var(--obsidian); }
-
-.btn--outline-dark {
-  color: var(--obsidian);
-  background: transparent;
-  border-color: var(--obsidian);
-}
-.btn--outline-dark:hover { background: var(--obsidian); color: var(--ivory); }
+.text-link--light { color: var(--ivory); }
+.text-link--dark { color: var(--obsidian); }
 
 /* ==========================================================================
    HEADER / NAV
@@ -200,20 +216,20 @@ button:focus-visible {
 }
 
 .nav__links a {
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ivory);
-  opacity: 0.88;
-  transition: color var(--dur-med) var(--ease), opacity var(--dur-fast) var(--ease);
+  opacity: 0.72;
+  transition: color var(--dur-med) var(--ease), opacity var(--dur-slow) var(--ease);
 }
 
 .site-header.is-scrolled .nav__links a {
   color: var(--obsidian);
 }
 
-.nav__links a:hover { opacity: 1; }
+.nav__links a:hover { opacity: 0.9; }
 
 .nav__toggle {
   display: none;
@@ -221,6 +237,16 @@ button:focus-visible {
   height: 18px;
   position: relative;
   z-index: 101;
+  /* Tappable area meets the 44x44px minimum guideline without changing
+     the icon's own quiet visual size — the extra hit area is invisible,
+     achieved by padding out from the icon via a pseudo-element rather
+     than resizing the bars themselves. */
+}
+
+.nav__toggle::before {
+  content: '';
+  position: absolute;
+  inset: -13px -8px;
 }
 
 .nav__toggle span {
@@ -298,8 +324,8 @@ button:focus-visible {
   font-family: var(--font-display);
   font-size: clamp(5rem, 14vw, 11rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
   margin-bottom: 1.75rem;
 }
 
@@ -328,7 +354,7 @@ button:focus-visible {
 }
 
 .house__text + .house__text {
-  margin-top: 1.75rem;
+  margin-top: var(--space-para-para);
   color: var(--stone);
   font-size: clamp(1rem, 1.6vw, 1.15rem);
 }
@@ -339,7 +365,6 @@ button:focus-visible {
 
 .philosophy {
   padding-block: var(--section-pad);
-  border-top: 1px solid var(--sand);
 }
 
 .philosophy__intro {
@@ -365,7 +390,6 @@ button:focus-visible {
 
 .works {
   padding-block: var(--section-pad);
-  border-top: 1px solid var(--sand);
 }
 
 .works__intro {
@@ -424,20 +448,76 @@ button:focus-visible {
   max-width: 34rem;
 }
 
-/* Pattern A — tall lead beside two stacked. Photos 1–3, 10–12, 19–21... */
-.works__grid .work:nth-child(9n+1) { grid-column: 1 / span 7; grid-row: span 2; }
-.works__grid .work:nth-child(9n+2) { grid-column: 8 / span 5; grid-row: span 1; }
-.works__grid .work:nth-child(9n+3) { grid-column: 8 / span 5; grid-row: span 1; }
+/* House Notes — the one recurring editorial ritual unique to this
+   house. Deliberately spare: no card, no border, no background block.
+   Just quiet type doing the work, the way the rest of the doc insists
+   on. Spans the full grid width so it reads as a pause in the
+   sequence, not another photo competing for the same rhythm. */
+.house-note {
+  grid-column: 1 / -1;
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+  text-align: center;
+}
 
-/* Pattern B — wide establishing frame, then an even split. */
-.works__grid .work:nth-child(9n+4) { grid-column: 1 / span 12; grid-row: span 1; }
-.works__grid .work:nth-child(9n+5) { grid-column: 1 / span 6; grid-row: span 1; }
-.works__grid .work:nth-child(9n+6) { grid-column: 7 / span 6; grid-row: span 1; }
+.house-note__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
 
-/* Pattern C — three even panels, close and tactile. */
-.works__grid .work:nth-child(9n+7) { grid-column: 1 / span 4; grid-row: span 1; }
-.works__grid .work:nth-child(9n+8) { grid-column: 5 / span 4; grid-row: span 1; }
-.works__grid .work:nth-child(9n+9) { grid-column: 9 / span 4; grid-row: span 1; }
+.house-note__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.house-note__item dt {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.5rem;
+}
+
+.house-note__item dd {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  color: var(--obsidian);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .house-note__list {
+    gap: 2rem 2.5rem;
+  }
+}
+/* Pattern driven by an explicit data-slot attribute (1-9, repeating)
+   rather than :nth-child position. This is deliberate: :nth-child counts
+   every sibling including non-.work elements like .house-note, so
+   inserting a House Notes pause anywhere in the sequence would silently
+   shift every photo after it out of pattern. data-slot is set by hand
+   per photo in the HTML and is immune to what else shares the grid. */
+.works__grid .work[data-slot="1"] { grid-column: 1 / span 7; grid-row: span 2; }
+.works__grid .work[data-slot="2"] { grid-column: 8 / span 5; grid-row: span 1; }
+.works__grid .work[data-slot="3"] { grid-column: 8 / span 5; grid-row: span 1; }
+
+.works__grid .work[data-slot="4"] { grid-column: 1 / span 12; grid-row: span 1; }
+.works__grid .work[data-slot="5"] { grid-column: 1 / span 6; grid-row: span 1; }
+.works__grid .work[data-slot="6"] { grid-column: 7 / span 6; grid-row: span 1; }
+
+.works__grid .work[data-slot="7"] { grid-column: 1 / span 4; grid-row: span 1; }
+.works__grid .work[data-slot="8"] { grid-column: 5 / span 4; grid-row: span 1; }
+.works__grid .work[data-slot="9"] { grid-column: 9 / span 4; grid-row: span 1; }
 
 /* ==========================================================================
    05 · THE ARCHIVE
@@ -446,7 +526,6 @@ button:focus-visible {
 .collection {
   padding-block: var(--section-pad);
   background: transparent;
-  border-top: 1px solid var(--sand);
 }
 
 .collection__intro {
@@ -587,7 +666,6 @@ button:focus-visible {
 
 .journal-preview {
   padding-block: var(--section-pad);
-  border-top: 1px solid var(--sand);
 }
 
 .journal-preview__grid {
@@ -599,7 +677,6 @@ button:focus-visible {
 .journal-card {
   display: block;
   padding-top: 1.75rem;
-  border-top: 1px solid var(--sand);
   transition: border-color var(--dur-med) var(--ease);
 }
 
@@ -658,7 +735,6 @@ button:focus-visible {
 
 .provenance {
   padding-block: clamp(4rem, 8vw, 6rem);
-  border-top: 1px solid var(--sand);
   text-align: center;
 }
 
@@ -684,7 +760,6 @@ button:focus-visible {
    ========================================================================== */
 
 .site-footer {
-  border-top: 1px solid var(--sand);
   padding-block: 3rem;
 }
 
@@ -727,6 +802,15 @@ button:focus-visible {
    ========================================================================== */
 
 @media (max-width: 860px) {
+  /* Section spacing is proportional to viewport, not identical across
+     devices. 180-240px reads as generous air on a tall desktop screen;
+     the same value eats ~22% of a phone's viewport per section edge,
+     which starts to feel like distance rather than air. Tightened here
+     to keep the same unhurried feeling without the extra scrolling. */
+  :root {
+    --section-pad: clamp(6.5rem, 16vw, 8rem);
+  }
+
   .nav__links {
     position: fixed;
     inset: 0;
@@ -763,6 +847,8 @@ button:focus-visible {
   .nav__links a {
     color: var(--obsidian);
     font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    display: inline-block;
   }
 
   .nav__toggle { display: block; z-index: 101; }
@@ -819,5 +905,5 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
-  .btn { width: 100%; text-align: center; }
+  .text-link { display: inline-block; }
 }

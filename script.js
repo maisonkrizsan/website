@@ -60,4 +60,39 @@
     });
   }
 
+  /* ---- Scroll reveal ------------------------------------------------------
+     Per house system spec: opacity 0 -> 100%, Y translate 12-18px max,
+     duration 1.2-1.8s, ease: easeInOut. No spring, no bounce, no scale.
+     Luxury moves slowly — each section fades in once, on first approach,
+     and never re-triggers on scroll-back. Respects prefers-reduced-motion
+     by doing nothing at all (elements stay visible, no motion). */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.house, .philosophy .pillar, .works__grid .work, .house-note, .standard__content, ' +
+      '.collection .pillar, .journal-card, .collaborate, .provenance'
+    );
+
+    revealTargets.forEach(function (el) {
+      el.classList.add('reveal');
+    });
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    revealTargets.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
 })();

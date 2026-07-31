@@ -42,7 +42,20 @@
     <!-- ============ 01 · THE ENTRANCE ============ -->
     <section class="entrance" id="entrance">
       <div class="entrance__media" aria-hidden="true">
-        <img src="assets/images/hero.jpg" alt="" class="entrance__image" />
+        <!-- HERO IMAGE — the single most important photo on the site.
+             Loads eagerly at high priority since it's the first thing
+             visible. TO REPLACE: export your chosen photo as hero.jpg
+             into assets/images/. Update width/height below to your
+             actual export dimensions so the browser reserves the right
+             space before the image loads. -->
+        <img
+          src="assets/images/hero.jpg"
+          alt=""
+          class="entrance__image"
+          width="2400"
+          height="1600"
+          fetchpriority="high"
+        />
       </div>
       <div class="entrance__scrim"></div>
       <div class="entrance__content">
@@ -59,10 +72,9 @@
           The world changes quickly. Some places do not.
         </p>
         <p class="house__text">
-          Architecture that carries memory. Craftsmanship that reveals
-          intention. Hospitality practiced as an art. Maison Krizsan exists
-          to preserve these places, through photography, film, and
-          editorial record.
+          Architecture that carries memory. Craft that reveals intention.
+          Maison Krizsan exists to preserve what deserves to remain,
+          through photograph, film, and record.
         </p>
       </div>
     </section>
@@ -97,75 +109,189 @@
          or time fact, never a mood word standing alone.
 
          TO REPLACE A PHOTO:
-           1. Rename your chosen file to match the numbered src below
-              (destination-01.jpg, destination-02.jpg, etc.) and drop
-              it into assets/images/ in the GitHub repo.
+           1. Export your chosen photo as destination-01.jpg and drop it
+              into assets/images/ in the GitHub repo, matching the
+              numbered name in that figure's src.
            2. Edit the <figcaption> text on that same figure to the
               real caption for that photo.
            3. Edit the alt text to a one-line factual description
               (for screen readers — not shown visually).
-         No other file needs to change to swap a photo. -->
+           4. If your actual photo's pixel dimensions differ from
+              1600x2000, update the width/height attributes on that
+              photo's <img> tag to match — this keeps the page from
+              jumping while the image loads. Not required, just tidier.
+         No other file needs to change to swap a photo.
+
+         WANT FASTER AVIF/WEBP FORMATS LATER?
+         Only add a <source> tag once that exact file actually exists
+         in assets/images/ — an empty or missing AVIF/WebP reference
+         breaks the whole image with no fallback, it does not politely
+         skip to the .jpg. Once you have real destination-01.avif and
+         .webp files uploaded, wrap that photo's <img> like this:
+           <picture>
+             <source srcset="assets/images/destination-01.avif" type="image/avif">
+             <source srcset="assets/images/destination-01.webp" type="image/webp">
+             <img src="assets/images/destination-01.jpg" ...>
+           </picture>
+         Do this per-photo, only after the file is actually uploaded. -->
     <section class="works" id="destinations">
       <div class="container">
         <p class="eyebrow eyebrow--center">Destinations</p>
         <p class="works__intro">Not staged. Found, and kept exactly as it was.</p>
 
         <div class="works__grid">
-          <figure class="work">
+          <figure class="work" data-slot="1">
             <div class="work__frame">
-              <img src="assets/images/destination-01.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-02.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-03.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-04.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-05.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
+              <img
+                src="assets/images/destination-01.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
             </div>
             <figcaption>Replace with a material or time fact, stated flat.</figcaption>
           </figure>
-          <figure class="work">
+          <figure class="work" data-slot="2">
             <div class="work__frame">
-              <img src="assets/images/destination-06.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
+              <img
+                src="assets/images/destination-02.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
             </div>
             <figcaption>Replace with a material or time fact, stated flat.</figcaption>
           </figure>
-          <figure class="work">
+          <figure class="work" data-slot="3">
             <div class="work__frame">
-              <img src="assets/images/destination-07.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-08.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
-            </div>
-            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
-          </figure>
-          <figure class="work">
-            <div class="work__frame">
-              <img src="assets/images/destination-09.jpg" alt="Replace with a one-line factual description of this photo" loading="lazy" />
+              <img
+                src="assets/images/destination-03.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
             </div>
             <figcaption>Replace with a material or time fact, stated flat.</figcaption>
           </figure>
 
-          <!-- Need more than 9? Copy one whole <figure class="work">...
+          <!-- ============================================= -->
+          <!-- HOUSE NOTES — signature editorial ritual        -->
+          <!-- This is the one recurring device unique to      -->
+          <!-- Maison Krizsan. It appears rarely — once, maybe -->
+          <!-- twice, never on every photo — so it stays a     -->
+          <!-- ritual and not a spec sheet. Fill every field    -->
+          <!-- with something you actually observed while       -->
+          <!-- shooting. If you don't know a value, delete that -->
+          <!-- whole line rather than guess — an incomplete      -->
+          <!-- note reads as honest, a made-up one doesn't.      -->
+          <!-- To add another elsewhere in the grid, copy this  -->
+          <!-- whole <div class="house-note">...</div> block.   -->
+          <!-- ============================================= -->
+          <div class="house-note">
+            <p class="house-note__eyebrow">House Notes</p>
+            <dl class="house-note__list">
+              <div class="house-note__item">
+                <dt>First light</dt>
+                <dd>Replace — e.g. 6:18 AM</dd>
+              </div>
+              <div class="house-note__item">
+                <dt>Material</dt>
+                <dd>Replace — e.g. Travertine</dd>
+              </div>
+              <div class="house-note__item">
+                <dt>Atmosphere</dt>
+                <dd>Replace — e.g. Quiet</dd>
+              </div>
+              <div class="house-note__item">
+                <dt>Sound</dt>
+                <dd>Replace — e.g. Water and wind</dd>
+              </div>
+            </dl>
+          </div>
+          <figure class="work" data-slot="4">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-04.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+          <figure class="work" data-slot="5">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-05.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+          <figure class="work" data-slot="6">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-06.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+          <figure class="work" data-slot="7">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-07.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+          <figure class="work" data-slot="8">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-08.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+          <figure class="work" data-slot="9">
+            <div class="work__frame">
+              <img
+                src="assets/images/destination-09.jpg"
+                alt="Replace with a one-line factual description of this photo"
+                width="1600"
+                height="2000"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Replace with a material or time fact, stated flat.</figcaption>
+          </figure>
+
+          <!-- Need more than 9? Copy one whole <figure class="work" data-slot="N">
                </figure> block and paste it here, continuing the number
-               (destination-10.jpg). The grid pattern repeats itself
-               automatically every 9 photos, so rhythm holds at any length. -->
+               (destination-10.jpg). Set data-slot to a number 1-9 that
+               continues the repeating pattern (photo 10 = slot 1, photo
+               11 = slot 2, and so on) — the grid layout is driven by
+               data-slot, not by position in the file, so this is safe
+               to reorder or insert a House Notes pause anywhere without
+               breaking the rhythm. -->
         </div>
       </div>
     </section>
@@ -201,28 +327,38 @@
     <!-- ============ 06 · THE KRIZSAN STANDARD ============ -->
     <section class="standard" id="standard">
       <div class="standard__media" aria-hidden="true">
-        <img src="assets/images/krizsan-standard-bg.jpg" alt="" class="standard__image" />
+        <!-- TO REPLACE: export as krizsan-standard-bg.jpg into
+             assets/images/. Update width/height to your actual export
+             dimensions. -->
+        <img
+          src="assets/images/krizsan-standard-bg.jpg"
+          alt=""
+          class="standard__image"
+          width="2400"
+          height="1600"
+          loading="lazy"
+        />
       </div>
       <div class="standard__scrim"></div>
       <div class="container container--narrow standard__content">
         <p class="eyebrow eyebrow--center eyebrow--light">The Krizsan Standard</p>
-        <p class="standard__lead">We believe a place is not luxurious because of what it offers. It is luxurious because of what it remembers.</p>
+        <p class="standard__lead">We do not photograph what is impressive. We wait for what is true.</p>
         <dl class="standard__list">
           <div class="standard__item">
             <dt>Time.</dt>
-            <dd>Places shaped by history.</dd>
+            <dd>We return until the light is right.</dd>
           </div>
           <div class="standard__item">
             <dt>Craft.</dt>
-            <dd>Details formed through human hands.</dd>
+            <dd>We notice what a hand made, not just what a hand bought.</dd>
           </div>
           <div class="standard__item">
             <dt>Place.</dt>
-            <dd>Locations with a distinct spirit.</dd>
+            <dd>We document the spirit, not the amenities.</dd>
           </div>
           <div class="standard__item">
             <dt>Legacy.</dt>
-            <dd>Beauty worthy of preservation.</dd>
+            <dd>We keep what will still matter in fifty years.</dd>
           </div>
         </dl>
       </div>
@@ -255,22 +391,21 @@
       <div class="container container--narrow">
         <p class="eyebrow eyebrow--center">Inquiries</p>
         <p class="collaborate__text">
-          Maison Krizsan works with a small number of hotels, villas, estates,
-          and destinations each year. The requirement is not size or fame.
-          It is character that has been earned and designed.
+          Maison Krizsan documents hotels, villas, and estates worth
+          remembering. Not the largest. Not the most photographed.
+          The ones with character that was earned, not designed.
         </p>
         <p class="collaborate__text collaborate__text--secondary">
-          Each relationship begins with a shared appreciation for atmosphere,
-          character, and legacy.
+          If that describes a place you know, we would like to hear from you.
         </p>
-        <a href="/cdn-cgi/l/email-protection#56252223323f39163b373f2539383d243f2c2537387835393b" class="btn btn--outline-dark">Begin a Conversation</a>
+        <a href="/cdn-cgi/l/email-protection#56252223323f39163b373f2539383d243f2c2537387835393b" class="text-link text-link--dark">Begin</a>
       </div>
     </section>
 
     <!-- ============ 09 · PROVENANCE ============ -->
     <section class="provenance" id="provenance">
       <div class="container container--narrow provenance__content">
-        <p class="provenance__mark">MAISON KRIZSAN</p>
+        <p class="provenance__mark">Maison Krizsan</p>
         <p class="provenance__line">Independent visual house</p>
         <p class="provenance__line">California · Europe</p>
         <p class="provenance__line">Established 2026</p>
@@ -282,13 +417,13 @@
   <!-- ============ 10 · FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer__inner">
-      <p class="footer__mark">MAISON KRIZSAN</p>
+      <p class="footer__mark">Maison Krizsan</p>
       <ul class="footer__links">
         <li><a href="#journal">Journal</a></li>
         <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
         <li><a href="/cdn-cgi/l/email-protection#a8dbdcddccc1c7e8c5c9c1dbc7c6c3dac1d2dbc9c686cbc7c5">Studio</a></li>
       </ul>
-      <p class="footer__copy">&copy; 2026 MAISON KRIZSAN</p>
+      <p class="footer__copy">&copy; 2026 Maison Krizsan</p>
     </div>
   </footer>
 
