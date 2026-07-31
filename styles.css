@@ -1,8 +1,9 @@
 /* ==========================================================================
-   MAISON KRIZSAN — House System v1.2
-   Elevation pass: an independent visual house, not a portfolio. Tokens
-   are locked to the brand brief. Do not introduce colors, type, or
-   motion outside this system without updating the brief itself.
+   MAISON KRIZSAN — House System v1.3
+   Luxury elevation pass: a young maison with the discipline and cultural
+   confidence of a heritage house. Tokens are locked to the brand brief.
+   Do not introduce colors, type, or motion outside this system without
+   updating the brief itself.
    ========================================================================== */
 
 :root {
@@ -17,8 +18,8 @@
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Rhythm */
-  --section-pad: clamp(7rem, 14vw, 14rem);
+  /* Rhythm — whitespace increased ~18% in v1.3, luxury uses air */
+  --section-pad: clamp(8.5rem, 16.5vw, 16.5rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
   --max-width-narrow: 760px;
@@ -171,8 +172,8 @@ button:focus-visible {
 
 .nav__mark {
   font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ivory);
   transition: color var(--dur-med) var(--ease);
@@ -261,10 +262,8 @@ button:focus-visible {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(15, 14, 12, 0.72) 0%,
-    rgba(15, 14, 12, 0.28) 42%,
-    rgba(15, 14, 12, 0.12) 65%,
-    rgba(15, 14, 12, 0.35) 100%
+    rgba(15, 14, 12, 0.55) 0%,
+    rgba(15, 14, 12, 0.08) 60%
   );
 }
 
@@ -275,20 +274,13 @@ button:focus-visible {
   padding: 0 var(--container-pad) clamp(4rem, 9vw, 7rem);
   text-align: center;
   color: var(--ivory);
-  opacity: 0;
-  animation: rise-in var(--dur-slow) var(--ease) 400ms forwards;
-}
-
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .entrance__title {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(5rem, 14vw, 11rem);
   font-weight: 400;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   line-height: 1;
   margin-bottom: 1.75rem;
 }
@@ -330,6 +322,17 @@ button:focus-visible {
 .philosophy {
   padding-block: var(--section-pad);
   border-top: 1px solid var(--sand);
+}
+
+.philosophy__intro {
+  max-width: 38rem;
+  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--obsidian);
 }
 
 .philosophy__grid {
@@ -423,6 +426,17 @@ button:focus-visible {
   padding-block: var(--section-pad);
   background: transparent;
   border-top: 1px solid var(--sand);
+}
+
+.collection__intro {
+  max-width: 38rem;
+  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--obsidian);
 }
 
 .collection__grid {
@@ -572,6 +586,16 @@ button:focus-visible {
   border-color: var(--olive);
 }
 
+.journal-card__kicker {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.85rem;
+}
+
 .journal-card__title {
   font-family: var(--font-display);
   font-size: 1.15rem;
@@ -595,6 +619,15 @@ button:focus-visible {
   font-weight: 300;
   line-height: 1.75;
   color: var(--obsidian);
+  max-width: 34rem;
+  margin-inline: auto;
+  margin-bottom: 1.25rem;
+}
+
+.collaborate__text--secondary {
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  color: var(--stone);
+  max-width: 30rem;
   margin-bottom: 2.75rem;
 }
 
@@ -666,19 +699,6 @@ button:focus-visible {
 .footer__copy {
   font-size: 0.76rem;
   color: var(--stone);
-}
-
-/* ==========================================================================
-   SCROLL REVEAL (progressive enhancement — content visible without JS)
-   ========================================================================== */
-
-.reveal {
-  opacity: 0;
-  transition: opacity var(--dur-slow) var(--ease);
-}
-
-.reveal.is-visible {
-  opacity: 1;
 }
 
 /* ==========================================================================
