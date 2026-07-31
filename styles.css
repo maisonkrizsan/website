@@ -22,7 +22,7 @@
      at 180-240px explicitly, framing air as content rather than a defect.
      This supersedes the v1.4 tightening; Mark reviewed the trade-off
      (more scroll distance) and confirmed the document's spec wins. */
-  --section-pad: clamp(7.25rem, 14vw, 15rem);
+  --section-pad: clamp(6rem, 10vw, 9rem);
   --space-heading-para: clamp(2.5rem, 4vw, 3.75rem);
   --space-para-image: clamp(3.75rem, 5.5vw, 5rem);
   --space-para-para: clamp(1.75rem, 2.5vw, 2.25rem);
