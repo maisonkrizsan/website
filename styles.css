@@ -1,88 +1,34 @@
 /* ==========================================================================
-   MAISON KRIZSAN — House System v1.3
-   Luxury elevation pass: a young maison with the discipline and cultural
-   confidence of a heritage house. Tokens are locked to the brand brief.
-   Do not introduce colors, type, or motion outside this system without
-   updating the brief itself.
+   MAISON KRIZSAN — House System v2.0
+   Conversion architecture without sacrificing the house language.
    ========================================================================== */
 
 :root {
-  /* Color — House System 04 */
   --ivory: #F4F0E8;
   --obsidian: #191817;
   --stone: #777168;
   --sand: #D8D0C4;
   --olive: #4B5140;
 
-  /* Type — House System 05 */
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Rhythm — v1.5: House System document locks minimum section spacing
-     at 180-240px explicitly, framing air as content rather than a defect.
-     This supersedes the v1.4 tightening; Mark reviewed the trade-off
-     (more scroll distance) and confirmed the document's spec wins. */
-  --section-pad: clamp(8rem, 10vw, 12rem);
-  --space-heading-para: clamp(2.5rem, 4vw, 3.75rem);
-  --space-para-image: clamp(3.75rem, 5.5vw, 5rem);
-  --space-para-para: clamp(1.75rem, 2.5vw, 2.25rem);
+  --section-pad: clamp(9rem, 12vw, 13rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
-  --max-width-narrow: 40rem;
-  --max-width-copy: 40rem;
+  --max-width-narrow: 44rem;
 
-  /* Motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-slow: 900ms;
   --dur-med: 500ms;
   --dur-fast: 250ms;
 }
 
-/* ==========================================================================
-   SCROLL REVEAL
-   Opacity + a short rise, nothing more. Values locked to the house
-   system spec — do not add scale, blur, or spring easing here.
-   ========================================================================== */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 1.4s ease-in-out, transform 1.4s ease-in-out;
-}
-
-.reveal--visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-body, h1, h2, h3, p, ul, figure {
-  margin: 0;
-}
-
+body, h1, h2, h3, p, ul, figure, dl, dd { margin: 0; }
 ul { padding: 0; list-style: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -99,15 +45,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Visible keyboard focus — never remove outline without replacing it */
+body.nav-locked {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--sand);
+  color: var(--obsidian);
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 1px solid var(--olive);
   outline-offset: 4px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ==========================================================================
-   LAYOUT PRIMITIVES
+   LAYOUT + TYPE
    ========================================================================== */
 
 .container {
@@ -122,34 +88,42 @@ button:focus-visible {
 
 .eyebrow {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--stone);
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .eyebrow--center { text-align: center; }
+.eyebrow--light { color: rgba(244, 240, 232, 0.68); }
 
-/* ==========================================================================
-   TEXT LINKS
-   Understated links replace boxed buttons sitewide. No fills, no borders,
-   no hover states that call attention to themselves — a hairline
-   underline that fades in, nothing more.
-   ========================================================================== */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4.8vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.section-title--center {
+  text-align: center;
+  margin-inline: auto;
+}
 
 .text-link {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 400;
+  font-size: 0.76rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid transparent;
+  opacity: 0.86;
   transition: border-color var(--dur-slow) var(--ease), opacity var(--dur-slow) var(--ease);
-  opacity: 0.85;
 }
 
 .text-link:hover {
@@ -159,6 +133,21 @@ button:focus-visible {
 
 .text-link--light { color: var(--ivory); }
 .text-link--dark { color: var(--obsidian); }
+
+/* ==========================================================================
+   SCROLL REVEAL
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.4s ease-in-out, transform 1.4s ease-in-out;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ==========================================================================
    HEADER / NAV
@@ -171,21 +160,16 @@ button:focus-visible {
   right: 0;
   z-index: 100;
   padding: 1.75rem var(--container-pad);
-  transition: background-color var(--dur-med) var(--ease), padding var(--dur-med) var(--ease);
-  /* Fixed positioning escapes any ancestor stacking context by default,
-     but sections like .entrance and .standard use overflow:hidden for
-     their media crops. Establishing this as its own isolated layer
-     guarantees the header (and the open mobile menu inside it) always
-     paints above that content with no clipping, on every mobile
-     browser, including older Safari compositing quirks. */
   isolation: isolate;
+  transition: background-color var(--dur-med) var(--ease), padding var(--dur-med) var(--ease), border-color var(--dur-med) var(--ease);
 }
 
 .site-header.is-scrolled {
-  background: rgba(244, 240, 232, 0.92);
+  background: rgba(244, 240, 232, 0.94);
   backdrop-filter: blur(10px);
-  padding-block: 1.15rem;
-  border-bottom: 1px solid var(--sand);
+  -webkit-backdrop-filter: blur(10px);
+  padding-block: 1.1rem;
+  border-bottom: 1px solid rgba(216, 208, 196, 0.7);
 }
 
 .nav {
@@ -198,38 +182,32 @@ button:focus-visible {
 
 .nav__mark {
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.24em;
+  font-size: 0.92rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ivory);
   transition: color var(--dur-med) var(--ease);
 }
 
-.site-header.is-scrolled .nav__mark,
-.nav--dark .nav__mark {
-  color: var(--obsidian);
-}
+.site-header.is-scrolled .nav__mark { color: var(--obsidian); }
 
 .nav__links {
   display: flex;
-  gap: 2.75rem;
+  gap: 2.6rem;
 }
 
 .nav__links a {
-  font-size: 0.72rem;
-  font-weight: 400;
+  font-size: 0.7rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ivory);
-  opacity: 0.72;
+  opacity: 0.76;
   transition: color var(--dur-med) var(--ease), opacity var(--dur-slow) var(--ease);
 }
 
-.site-header.is-scrolled .nav__links a {
-  color: var(--obsidian);
-}
-
-.nav__links a:hover { opacity: 0.9; }
+.site-header.is-scrolled .nav__links a { color: var(--obsidian); }
+.nav__links a:hover { opacity: 1; }
 
 .nav__toggle {
   display: none;
@@ -237,10 +215,6 @@ button:focus-visible {
   height: 18px;
   position: relative;
   z-index: 101;
-  /* Tappable area meets the 44x44px minimum guideline without changing
-     the icon's own quiet visual size — the extra hit area is invisible,
-     achieved by padding out from the icon via a pseudo-element rather
-     than resizing the bars themselves. */
 }
 
 .nav__toggle::before {
@@ -258,22 +232,13 @@ button:focus-visible {
   transition: background-color var(--dur-med) var(--ease), transform var(--dur-fast) var(--ease);
 }
 
-.site-header.is-scrolled .nav__toggle span { background: var(--obsidian); }
-
-/* When the full-screen menu is open, the toggle always sits above the
-   ivory overlay, so its bars must always render as obsidian, regardless
-   of scroll state. This is the fix for the invisible X on mobile. */
+.site-header.is-scrolled .nav__toggle span,
 .nav__toggle.is-open span { background: var(--obsidian); }
 
 .nav__toggle span:first-child { top: 0; }
 .nav__toggle span:last-child { bottom: 0; }
-
-.nav__toggle.is-open span:first-child {
-  transform: translateY(8px) rotate(45deg);
-}
-.nav__toggle.is-open span:last-child {
-  transform: translateY(-9px) rotate(-45deg);
-}
+.nav__toggle.is-open span:first-child { transform: translateY(8px) rotate(45deg); }
+.nav__toggle.is-open span:last-child { transform: translateY(-9px) rotate(-45deg); }
 
 /* ==========================================================================
    01 · THE ENTRANCE
@@ -281,14 +246,14 @@ button:focus-visible {
 
 .entrance {
   position: relative;
-  height: 100svh;
-  min-height: 560px;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
-.entrance__media {
+.entrance__media,
+.entrance__scrim {
   position: absolute;
   inset: 0;
 }
@@ -300,14 +265,12 @@ button:focus-visible {
 }
 
 .entrance__scrim {
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(15, 14, 12, 0.15) 0%,
-    rgba(15, 14, 12, 0.4) 35%,
-    rgba(15, 14, 12, 0.45) 65%,
-    rgba(15, 14, 12, 0.2) 100%
+    rgba(15, 14, 12, 0.20) 0%,
+    rgba(15, 14, 12, 0.48) 38%,
+    rgba(15, 14, 12, 0.52) 68%,
+    rgba(15, 14, 12, 0.28) 100%
   );
 }
 
@@ -315,101 +278,80 @@ button:focus-visible {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 0 var(--container-pad);
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: clamp(7rem, 12vh, 10rem) var(--container-pad) 5rem;
   text-align: center;
   color: var(--ivory);
 }
 
+.entrance__kicker {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 1.5rem;
+}
+
 .entrance__title {
   font-family: var(--font-display);
-  font-size: clamp(5rem, 14vw, 11rem);
+  font-size: clamp(3.2rem, 10vw, 9.5rem);
   font-weight: 400;
-  letter-spacing: 0.06em;
-  line-height: 1.05;
-  margin-bottom: 1.75rem;
+  letter-spacing: 0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.entrance__statement {
+  max-width: 54rem;
+  margin: clamp(2rem, 4vw, 3.25rem) auto 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3.2vw, 2.8rem);
+  line-height: 1.28;
+  text-wrap: balance;
 }
 
 .entrance__sub {
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
+  font-size: clamp(0.9rem, 1.35vw, 1.05rem);
   font-weight: 300;
-  line-height: 1.7;
-  max-width: 34rem;
-  margin-inline: auto;
-  opacity: 0.92;
+  line-height: 1.8;
+  opacity: 0.84;
+  text-wrap: balance;
+}
+
+.entrance__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.75rem;
+  margin-top: 2.6rem;
 }
 
 /* ==========================================================================
-   02 · THE HOUSE
-   ========================================================================== */
-
-.house {
-  padding-block: var(--section-pad);
-}
-
-.house__text {
-  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--obsidian);
-}
-
-.house__text + .house__text {
-  margin-top: var(--space-para-para);
-  color: var(--stone);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-}
-
-/* ==========================================================================
-   03 · THE PHILOSOPHY
-   ========================================================================== */
-
-.philosophy {
-  padding-block: var(--section-pad);
-}
-
-.philosophy__intro {
-  max-width: 38rem;
-  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--obsidian);
-}
-
-.philosophy__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2.5rem, 5vw, 4rem);
-}
-
-/* ==========================================================================
-   04 · DESTINATIONS
+   02 · SELECTED WORK
    ========================================================================== */
 
 .works {
   padding-block: var(--section-pad);
 }
 
-.works__intro {
-  max-width: 34rem;
-  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--obsidian);
+.works__title {
+  max-width: 44rem;
 }
 
-/* One continuous grid. No group headers, no category names — the
-   images run as a single unlabeled sequence. Rhythm is carried by
-   repeating triads of the same three span patterns used before
-   (tall-lead-pair / wide-then-split / even-quad), so the page still
-   reads as edited, not just a uniform tile wall. Add a fourth pattern
-   here if a fourth ever becomes useful; three repeating is enough to
-   avoid monotony without inventing a new grid per photo. */
+.works__intro {
+  max-width: 38rem;
+  margin: 1.75rem auto clamp(4.5rem, 7vw, 6.5rem);
+  text-align: center;
+  color: var(--stone);
+  font-size: clamp(0.98rem, 1.45vw, 1.1rem);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
 .works__grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -428,6 +370,7 @@ button:focus-visible {
 .work__frame {
   overflow: hidden;
   flex: 1;
+  background: var(--sand);
 }
 
 .work img {
@@ -436,110 +379,223 @@ button:focus-visible {
   object-fit: cover;
 }
 
-/* Single caption line. Material or time fact only — never a mood
-   word standing alone, never a repeated category label. */
-.work figcaption {
-  padding-top: 0.9rem;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
-  color: var(--stone);
-  max-width: 34rem;
-}
-
-/* House Notes — the one recurring editorial ritual unique to this
-   house. Deliberately spare: no card, no border, no background block.
-   Just quiet type doing the work, the way the rest of the doc insists
-   on. Spans the full grid width so it reads as a pause in the
-   sequence, not another photo competing for the same rhythm. */
-.house-note {
-  grid-column: 1 / -1;
-  padding-block: clamp(3rem, 5vw, 4.5rem);
-  text-align: center;
-}
-
-.house-note__eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--stone);
-  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
-}
-
-.house-note__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  max-width: 46rem;
-  margin-inline: auto;
-}
-
-.house-note__item dt {
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--stone);
-  margin-bottom: 0.5rem;
-}
-
-.house-note__item dd {
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  font-weight: 400;
-  color: var(--obsidian);
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .house-note__list {
-    gap: 2rem 2.5rem;
-  }
-}
-/* Pattern driven by an explicit data-slot attribute (1-9, repeating)
-   rather than :nth-child position. This is deliberate: :nth-child counts
-   every sibling including non-.work elements like .house-note, so
-   inserting a House Notes pause anywhere in the sequence would silently
-   shift every photo after it out of pattern. data-slot is set by hand
-   per photo in the HTML and is immune to what else shares the grid. */
 .works__grid .work[data-slot="1"] { grid-column: 1 / span 7; grid-row: span 2; }
 .works__grid .work[data-slot="2"] { grid-column: 8 / span 5; grid-row: span 1; }
 .works__grid .work[data-slot="3"] { grid-column: 8 / span 5; grid-row: span 1; }
-
 .works__grid .work[data-slot="4"] { grid-column: 1 / span 12; grid-row: span 1; }
 .works__grid .work[data-slot="5"] { grid-column: 1 / span 6; grid-row: span 1; }
 .works__grid .work[data-slot="6"] { grid-column: 7 / span 6; grid-row: span 1; }
-
 .works__grid .work[data-slot="7"] { grid-column: 1 / span 4; grid-row: span 1; }
 .works__grid .work[data-slot="8"] { grid-column: 5 / span 4; grid-row: span 1; }
 .works__grid .work[data-slot="9"] { grid-column: 9 / span 4; grid-row: span 1; }
 
 /* ==========================================================================
-   05 · THE ARCHIVE
+   03 · THE COMMISSION
    ========================================================================== */
 
-.collection {
+.commission {
   padding-block: var(--section-pad);
-  background: transparent;
+  border-top: 1px solid rgba(216, 208, 196, 0.75);
 }
 
-.collection__intro {
+.commission__title {
+  max-width: 58rem;
+}
+
+.commission__copy {
+  max-width: 46rem;
+  margin: clamp(2.5rem, 4.5vw, 4rem) auto 0;
+  text-align: center;
+  color: var(--stone);
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+.commission__copy p + p { margin-top: 1.4rem; }
+
+.commission__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2.25rem, 5vw, 5rem);
+  max-width: 70rem;
+  margin: clamp(4.5rem, 7vw, 6.5rem) auto 0;
+}
+
+.service {
+  text-align: center;
+  padding-inline: 0.75rem;
+}
+
+.service__mark {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  margin-bottom: 1.35rem;
+}
+
+.service__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  font-weight: 400;
+  margin-bottom: 0.9rem;
+}
+
+.service__desc {
+  color: var(--stone);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.commission__action {
+  margin-top: clamp(3.75rem, 6vw, 5rem);
+  text-align: center;
+}
+
+/* ==========================================================================
+   04 · THE METHOD
+   ========================================================================== */
+
+.method {
+  padding-block: var(--section-pad);
+  background: var(--obsidian);
+  color: var(--ivory);
+}
+
+.method__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(4rem, 9vw, 8rem);
+  align-items: start;
+}
+
+.method .eyebrow { color: rgba(244, 240, 232, 0.58); }
+
+.method__heading .section-title {
+  max-width: 31rem;
+}
+
+.method__copy {
   max-width: 38rem;
-  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
+  color: rgba(244, 240, 232, 0.72);
+  font-weight: 300;
+  line-height: 1.95;
+}
+
+.method__copy p + p { margin-top: 1.5rem; }
+
+.method__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.25vw, 1.8rem);
+  line-height: 1.55;
+  color: var(--ivory);
+}
+
+.method__sequence {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-top: clamp(5rem, 9vw, 8rem);
+}
+
+.method__sequence span {
+  border-top: 1px solid rgba(244, 240, 232, 0.22);
+  padding-top: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.25vw, 1.08rem);
+  color: rgba(244, 240, 232, 0.82);
+}
+
+/* ==========================================================================
+   05 · THE HOUSE
+   ========================================================================== */
+
+.house {
+  padding-block: var(--section-pad);
+}
+
+.house__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(4rem, 9vw, 8rem);
+  align-items: start;
+}
+
+.house__heading .section-title {
+  max-width: 34rem;
+}
+
+.house__copy {
+  max-width: 38rem;
+}
+
+.house__text {
+  font-size: clamp(1.08rem, 1.85vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.house__text + .house__text {
+  margin-top: 1.75rem;
+  color: var(--stone);
+  font-size: clamp(0.98rem, 1.45vw, 1.08rem);
+}
+
+.identity {
+  margin-top: clamp(6rem, 10vw, 9rem);
+}
+
+.identity__label {
+  max-width: 40rem;
+  margin: 0 auto clamp(3rem, 5vw, 4.5rem);
   text-align: center;
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--obsidian);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.5;
 }
 
-.collection__grid {
+.identity__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--sand);
+  border-left: 1px solid var(--sand);
+}
+
+.identity__item {
+  min-height: 8.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  border-right: 1px solid var(--sand);
+  border-bottom: 1px solid var(--sand);
+}
+
+.identity__item span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.philosophy {
+  margin-top: clamp(7rem, 11vw, 10rem);
+}
+
+.philosophy__intro {
+  max-width: 38rem;
+  margin: 0 auto clamp(4rem, 6vw, 5.5rem);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.65;
+}
+
+.philosophy__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(2.5rem, 5vw, 4rem);
@@ -550,29 +606,19 @@ button:focus-visible {
   padding-inline: 1rem;
 }
 
-.pillar__mark {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  color: var(--stone);
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.1em;
-}
-
 .pillar__title {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 400;
   margin-bottom: 0.9rem;
-  letter-spacing: 0.01em;
 }
 
 .pillar__desc {
-  font-size: 0.95rem;
-  color: var(--stone);
-  line-height: 1.7;
   max-width: 22rem;
   margin-inline: auto;
+  color: var(--stone);
+  font-size: 0.94rem;
+  line-height: 1.75;
 }
 
 /* ==========================================================================
@@ -581,11 +627,12 @@ button:focus-visible {
 
 .standard {
   position: relative;
-  padding-block: calc(var(--section-pad) * 1.3);
+  padding-block: calc(var(--section-pad) * 1.15);
   overflow: hidden;
 }
 
-.standard__media {
+.standard__media,
+.standard__scrim {
   position: absolute;
   inset: 0;
 }
@@ -597,9 +644,7 @@ button:focus-visible {
 }
 
 .standard__scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 12, 10, 0.68);
+  background: rgba(13, 12, 10, 0.72);
 }
 
 .standard__content {
@@ -609,35 +654,29 @@ button:focus-visible {
   color: var(--ivory);
 }
 
-.eyebrow--light {
-  color: rgba(244, 240, 232, 0.65);
-}
-
 .standard__lead {
+  max-width: 48rem;
+  margin: 0 auto clamp(4rem, 7vw, 5.5rem);
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.6vw, 1.85rem);
-  font-weight: 400;
-  line-height: 1.5;
-  max-width: 42rem;
-  margin-inline: auto;
-  margin-bottom: 3.5rem;
-  letter-spacing: 0.01em;
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  line-height: 1.48;
+  text-wrap: balance;
 }
 
 .standard__list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(2rem, 4vw, 3rem);
-  text-align: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  max-width: 75rem;
+  margin-inline: auto;
 }
 
 .standard__item dt {
+  position: relative;
+  padding-bottom: 1rem;
+  margin-bottom: 0.85rem;
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  letter-spacing: 0.02em;
-  margin-bottom: 0.65rem;
-  position: relative;
-  padding-bottom: 0.85rem;
 }
 
 .standard__item dt::after {
@@ -645,19 +684,17 @@ button:focus-visible {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
   width: 1.5rem;
   height: 1px;
+  transform: translateX(-50%);
   background: var(--olive);
-  opacity: 0.85;
 }
 
 .standard__item dd {
-  margin: 0;
-  font-size: 0.85rem;
+  color: rgba(244, 240, 232, 0.68);
+  font-size: 0.84rem;
   font-weight: 300;
-  line-height: 1.6;
-  color: rgba(244, 240, 232, 0.7);
+  line-height: 1.75;
 }
 
 /* ==========================================================================
@@ -668,39 +705,45 @@ button:focus-visible {
   padding-block: var(--section-pad);
 }
 
+.journal-preview__title {
+  max-width: 50rem;
+}
+
+.journal-preview__intro {
+  max-width: 40rem;
+  margin: 1.75rem auto clamp(4.5rem, 7vw, 6rem);
+  text-align: center;
+  color: var(--stone);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
 .journal-preview__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  border-top: 1px solid var(--sand);
 }
 
 .journal-card {
-  display: block;
   padding-top: 1.75rem;
-  transition: border-color var(--dur-med) var(--ease);
-}
-
-.journal-card:hover {
-  border-color: var(--olive);
 }
 
 .journal-card__kicker {
   display: block;
+  margin-bottom: 0.9rem;
+  color: var(--stone);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--stone);
-  margin-bottom: 0.85rem;
 }
 
 .journal-card__title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 400;
   line-height: 1.45;
-  letter-spacing: 0.01em;
-  color: var(--obsidian);
 }
 
 /* ==========================================================================
@@ -710,23 +753,28 @@ button:focus-visible {
 .collaborate {
   padding-block: var(--section-pad);
   text-align: center;
+  border-top: 1px solid rgba(216, 208, 196, 0.75);
+}
+
+.collaborate__title {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
 }
 
 .collaborate__text {
-  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--obsidian);
-  max-width: 34rem;
+  max-width: 38rem;
   margin-inline: auto;
-  margin-bottom: 1.25rem;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-weight: 300;
+  line-height: 1.85;
 }
 
 .collaborate__text--secondary {
-  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  max-width: 36rem;
+  margin-top: 1.35rem;
+  margin-bottom: 3rem;
   color: var(--stone);
-  max-width: 30rem;
-  margin-bottom: 2.75rem;
+  font-size: clamp(0.92rem, 1.35vw, 1rem);
 }
 
 /* ==========================================================================
@@ -734,25 +782,24 @@ button:focus-visible {
    ========================================================================== */
 
 .provenance {
-  padding-block: clamp(4rem, 8vw, 6rem);
+  padding-block: clamp(4.5rem, 8vw, 6.5rem);
   text-align: center;
 }
 
 .provenance__mark {
+  margin-bottom: 1rem;
   font-family: var(--font-display);
   font-size: 1rem;
   letter-spacing: 0.1em;
-  color: var(--obsidian);
-  margin-bottom: 1rem;
 }
 
 .provenance__line {
-  font-size: 0.72rem;
+  color: var(--stone);
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--stone);
-  line-height: 1.9;
+  line-height: 1.95;
 }
 
 /* ==========================================================================
@@ -761,6 +808,7 @@ button:focus-visible {
 
 .site-footer {
   padding-block: 3rem;
+  border-top: 1px solid rgba(216, 208, 196, 0.75);
 }
 
 .footer__inner {
@@ -783,90 +831,60 @@ button:focus-visible {
 }
 
 .footer__links a {
-  font-size: 0.76rem;
+  color: var(--stone);
+  font-size: 0.74rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--stone);
   transition: color var(--dur-fast) var(--ease);
 }
 
 .footer__links a:hover { color: var(--obsidian); }
-
-.footer__copy {
-  font-size: 0.76rem;
-  color: var(--stone);
-}
+.footer__copy { color: var(--stone); font-size: 0.74rem; }
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 860px) {
-  /* Section spacing is proportional to viewport, not identical across
-     devices. 180-240px reads as generous air on a tall desktop screen;
-     the same value eats ~22% of a phone's viewport per section edge,
-     which starts to feel like distance rather than air. Tightened here
-     to keep the same unhurried feeling without the extra scrolling. */
   :root {
-    --section-pad: clamp(6.5rem, 16vw, 8rem);
+    --section-pad: clamp(6.5rem, 17vw, 8.25rem);
   }
+
+  .site-header { padding-block: 1.35rem; }
 
   .nav__links {
     position: fixed;
     inset: 0;
     z-index: 90;
-    background: var(--ivory);
-    /* Opaque and isolated so no page content, animation, or transform
-       from other sections can composite through the overlay while the
-       menu is open or mid-transition. */
-    isolation: isolate;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2.25rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    background: var(--ivory);
+    isolation: isolate;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-12px);
-    transition: opacity var(--dur-med) var(--ease),
-                transform var(--dur-med) var(--ease),
-                visibility 0s linear var(--dur-med);
+    transition: opacity var(--dur-med) var(--ease), transform var(--dur-med) var(--ease), visibility 0s linear var(--dur-med);
   }
 
   .nav__links.is-open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition: opacity var(--dur-med) var(--ease),
-                transform var(--dur-med) var(--ease),
-                visibility 0s linear 0s;
+    transition: opacity var(--dur-med) var(--ease), transform var(--dur-med) var(--ease), visibility 0s linear 0s;
   }
 
   .nav__links a {
-    color: var(--obsidian);
-    font-size: 0.95rem;
-    padding: 0.75rem 1rem;
     display: inline-block;
+    padding: 0.75rem 1rem;
+    color: var(--obsidian);
+    font-size: 0.92rem;
   }
 
-  .nav__toggle { display: block; z-index: 101; }
+  .nav__toggle { display: block; }
 
-  /* Body scroll lock while menu is open. Using a class (toggled in JS)
-     rather than only an inline style keeps this declarative and avoids
-     any specificity fights with other inline styles. */
-  body.nav-locked {
-    overflow: hidden;
-    height: 100svh;
-  }
-
-  .br-desktop { display: none; }
-
-  /* Mobile: single column, every photo full width. The asymmetric
-     desktop grid (tall leads, wide establishing frames, tight triads)
-     collapses to one clean vertical sequence rather than trying to
-     preserve span logic that only works with horizontal room. */
   .works__grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
@@ -878,24 +896,38 @@ button:focus-visible {
     grid-row: auto !important;
   }
 
-  .works__grid .work__frame {
-    aspect-ratio: 4 / 5;
-  }
+  .works__grid .work__frame { aspect-ratio: 4 / 5; }
 
-  .collection__grid,
-  .philosophy__grid {
+  .commission__grid,
+  .philosophy__grid,
+  .journal-preview__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 
-  .standard__list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.25rem 1.5rem;
+  .method__layout,
+  .house__layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .journal-preview__grid {
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
+  .method__heading .section-title,
+  .house__heading .section-title {
+    max-width: 38rem;
+  }
+
+  .method__sequence {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1rem;
+  }
+
+  .identity__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .standard__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.75rem 1.75rem;
   }
 
   .footer__inner {
@@ -904,6 +936,55 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 480px) {
-  .text-link { display: inline-block; }
+@media (max-width: 560px) {
+  .entrance__content {
+    padding-top: 7.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .entrance__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .method__sequence {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .identity__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .identity__item {
+    min-height: 6.5rem;
+  }
+
+  .standard__list {
+    grid-template-columns: 1fr;
+    max-width: 22rem;
+  }
+
+  .footer__links {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
