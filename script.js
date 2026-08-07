@@ -63,7 +63,7 @@
       '.works__grid .work, .commission__title, .commission__copy, .service, ' +
       '.method__heading, .method__copy, .method__sequence, .house__heading, ' +
       '.house__copy, .identity, .philosophy .pillar, .standard__content, ' +
-      '.journal-card, .collaborate, .provenance'
+      '.collaborate, .provenance, .work-index__heading, .work-index__page-label, .pagination, .work-commission'
     );
 
     revealTargets.forEach(function (element) {

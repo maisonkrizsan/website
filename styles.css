@@ -13,7 +13,7 @@
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --section-pad: clamp(9rem, 12vw, 13rem);
+  --section-pad: clamp(7.5rem, 9vw, 10.25rem);
   --container-pad: clamp(1.5rem, 5vw, 4rem);
   --max-width: 1400px;
   --max-width-narrow: 44rem;
@@ -344,7 +344,7 @@ button:focus-visible {
 
 .works__intro {
   max-width: 38rem;
-  margin: 1.75rem auto clamp(4.5rem, 7vw, 6.5rem);
+  margin: 1.5rem auto clamp(3.5rem, 5vw, 4.75rem);
   text-align: center;
   color: var(--stone);
   font-size: clamp(0.98rem, 1.45vw, 1.1rem);
@@ -697,57 +697,133 @@ button:focus-visible {
   line-height: 1.75;
 }
 
+
+.works__action {
+  margin-top: clamp(2.75rem, 4.5vw, 4rem);
+  text-align: center;
+}
+
 /* ==========================================================================
-   07 · THE JOURNAL
+   WORK ARCHIVE / PAGINATION
    ========================================================================== */
 
-.journal-preview {
-  padding-block: var(--section-pad);
+.site-header--solid {
+  background: rgba(244, 240, 232, 0.97);
+  border-bottom: 1px solid rgba(216, 208, 196, 0.7);
 }
 
-.journal-preview__title {
-  max-width: 50rem;
+.site-header--solid .nav__mark,
+.site-header--solid .nav__links a {
+  color: var(--obsidian);
 }
 
-.journal-preview__intro {
-  max-width: 40rem;
-  margin: 1.75rem auto clamp(4.5rem, 7vw, 6rem);
-  text-align: center;
+.site-header--solid .nav__toggle span {
+  background: var(--obsidian);
+}
+
+.work-index {
+  padding-top: clamp(9rem, 13vw, 12rem);
+  padding-bottom: var(--section-pad);
+}
+
+.work-index__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: end;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.work-index__heading .section-title {
+  max-width: 42rem;
+}
+
+.work-index__intro {
+  max-width: 31rem;
   color: var(--stone);
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
   font-weight: 300;
   line-height: 1.85;
 }
 
-.journal-preview__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2rem, 4vw, 3.5rem);
-  border-top: 1px solid var(--sand);
-}
-
-.journal-card {
-  padding-top: 1.75rem;
-}
-
-.journal-card__kicker {
-  display: block;
-  margin-bottom: 0.9rem;
+.work-index__page-label {
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
   color: var(--stone);
   font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.journal-card__title {
-  font-family: var(--font-display);
-  font-size: 1.18rem;
-  font-weight: 400;
-  line-height: 1.45;
+.works__grid--archive {
+  margin-top: 0;
+}
+
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  margin-top: clamp(4rem, 7vw, 6rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sand);
+}
+
+.pagination__direction,
+.pagination__number {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pagination__direction:last-child {
+  justify-self: end;
+}
+
+.pagination__direction.is-disabled {
+  color: var(--stone);
+  opacity: 0.42;
+}
+
+.pagination__numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.pagination__number {
+  color: var(--stone);
+}
+
+.pagination__number.is-current {
+  color: var(--obsidian);
+  border-bottom: 1px solid var(--obsidian);
+}
+
+.work-commission {
+  padding-block: var(--section-pad);
+  text-align: center;
+  border-top: 1px solid rgba(216, 208, 196, 0.75);
+}
+
+.work-commission .section-title {
+  max-width: 48rem;
+  margin-bottom: 2rem;
+}
+
+.work-commission__text {
+  max-width: 36rem;
+  margin: 0 auto 2.75rem;
+  color: var(--stone);
+  font-size: clamp(0.95rem, 1.35vw, 1.04rem);
+  font-weight: 300;
+  line-height: 1.85;
 }
 
 /* ==========================================================================
-   08 · PRIVATE COMMISSIONS
+   07 · PRIVATE COMMISSIONS
    ========================================================================== */
 
 .collaborate {
@@ -778,7 +854,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   09 · PROVENANCE
+   08 · PROVENANCE
    ========================================================================== */
 
 .provenance {
@@ -803,7 +879,7 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   10 · FOOTER
+   09 · FOOTER
    ========================================================================== */
 
 .site-footer {
@@ -847,7 +923,7 @@ button:focus-visible {
 
 @media (max-width: 860px) {
   :root {
-    --section-pad: clamp(6.5rem, 17vw, 8.25rem);
+    --section-pad: clamp(4.5rem, 12vw, 6rem);
   }
 
   .site-header { padding-block: 1.35rem; }
@@ -899,8 +975,7 @@ button:focus-visible {
   .works__grid .work__frame { aspect-ratio: 4 / 5; }
 
   .commission__grid,
-  .philosophy__grid,
-  .journal-preview__grid {
+  .philosophy__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
@@ -936,7 +1011,32 @@ button:focus-visible {
   }
 }
 
+
+@media (max-width: 860px) {
+  .work-index {
+    padding-top: 8rem;
+  }
+
+  .work-index__heading {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pagination {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 560px) {
+
+  .pagination__numbers {
+    gap: 1rem;
+  }
+
+  .pagination__direction {
+    font-size: 0.66rem;
+  }
   .entrance__content {
     padding-top: 7.5rem;
     padding-bottom: 3.5rem;
