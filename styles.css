@@ -278,47 +278,43 @@ button:focus-visible {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 78rem;
   margin-inline: auto;
-  padding: clamp(7rem, 12vh, 10rem) var(--container-pad) 5rem;
+  padding: clamp(7rem, 11vh, 9rem) var(--container-pad) 4.5rem;
   text-align: center;
   color: var(--ivory);
 }
 
-.entrance__kicker {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.78;
-  margin-bottom: 1.5rem;
-}
-
 .entrance__title {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 10vw, 9.5rem);
+  font-size: clamp(4rem, 9.75vw, 10.75rem);
   font-weight: 400;
-  letter-spacing: 0.045em;
-  line-height: 0.98;
-  text-wrap: balance;
+  letter-spacing: 0.055em;
+  line-height: 0.94;
+  white-space: nowrap;
+}
+
+.entrance__title-word {
+  display: inline;
 }
 
 .entrance__statement {
-  max-width: 54rem;
-  margin: clamp(2rem, 4vw, 3.25rem) auto 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 3.2vw, 2.8rem);
-  line-height: 1.28;
+  max-width: 44rem;
+  margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
 .entrance__sub {
-  max-width: 42rem;
-  margin: 1.25rem auto 0;
-  font-size: clamp(0.9rem, 1.35vw, 1.05rem);
+  max-width: 40rem;
+  margin: 0.65rem auto 0;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
   font-weight: 300;
-  line-height: 1.8;
-  opacity: 0.84;
+  line-height: 1.75;
+  opacity: 0.76;
   text-wrap: balance;
 }
 
@@ -327,7 +323,7 @@ button:focus-visible {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem 2.75rem;
-  margin-top: 2.6rem;
+  margin-top: 2.15rem;
 }
 
 /* ==========================================================================
@@ -1025,6 +1021,33 @@ button:focus-visible {
   .pagination {
     grid-template-columns: 1fr auto 1fr;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .entrance__title {
+    font-size: clamp(4.15rem, 18vw, 6rem);
+    line-height: 0.88;
+    letter-spacing: 0.035em;
+    white-space: normal;
+  }
+
+  .entrance__title-word {
+    display: block;
+  }
+
+  .entrance__statement {
+    max-width: 21rem;
+    margin-top: 2.35rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .entrance__sub {
+    max-width: 20rem;
+    margin-top: 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.7;
   }
 }
 
