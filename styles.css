@@ -163,3 +163,100 @@
 /* V5 render refinement: full-height mobile signature and 320px enquiry safety. */
 @media (max-width:760px){.site-footer .footer-wordmark{font-size:clamp(61px,20.6vw,127px)}}
 @media (max-width:360px){.site-footer .footer-wordmark{font-size:20.3vw}.contact-cta{font-size:clamp(20px,6.5vw,23px);gap:9px}.contact-cta span{font-size:18px}}
+
+
+/* V5.1 | Mobile close: center the invitation and the final signature.
+   Desktop presentation remains untouched. */
+@media (max-width: 760px) {
+  .contact .contact-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(36px, 9vw, 55px);
+    text-align: center;
+  }
+  .contact .contact-inner > div:first-child {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact .contact-inner .section-label {
+    text-align: center;
+  }
+  .contact h2 {
+    width: 100%;
+    max-width: 11.5ch;
+    margin: 29px auto 0;
+    font-size: clamp(46px, 11.5vw, 64px);
+    line-height: 1.03;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    text-align: center;
+  }
+  .contact-details > p {
+    margin-inline: auto;
+    max-width: 35ch;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .contact .contact-cta {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    margin: 39px auto 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(6px, 1.6vw, 11px);
+    padding: 0 0 10px;
+    font-size: clamp(18px, 5.3vw, 24px);
+    line-height: 1.24;
+    letter-spacing: -.035em;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .contact .contact-cta span {
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: clamp(17px, 4.75vw, 22px);
+    line-height: 1;
+  }
+  .contact .email-row {
+    justify-content: center;
+    column-gap: 18px;
+    row-gap: 13px;
+    max-width: 100%;
+  }
+  .contact .copy-notice { text-align: center; }
+
+  /* Preserve the directory's two-column structure but center every item. */
+  .site-footer .footer-directory { text-align: center; }
+  .site-footer .footer-about-copy { margin-inline: auto; }
+  .site-footer .footer-links { align-items: center; }
+  .site-footer .footer-wordmark {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: -.07em;
+  }
+  .site-footer .footer-end {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 11px;
+  }
+  .site-footer .footer-end a { align-self: center; }
+}
+@media (max-width: 359px) {
+  .contact h2 { font-size: clamp(42px, 11.3vw, 47px); }
+  .contact .contact-cta { font-size: 17.5px; gap: 6px; }
+  .contact .contact-cta span { font-size: 17px; }
+}
