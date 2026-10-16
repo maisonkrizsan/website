@@ -1,6 +1,6 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "4.0 focused commercial positioning + motion hero",
+  "revision": "5.0 clarity, commission architecture and statement footer",
   "project": {
     "name": "MAISON KRIZSAN",
     "primary_mode": "CONVERT",
@@ -18,7 +18,7 @@
     ]
   },
   "conversion": {
-    "primary_action": "Qualified commission enquiry",
+    "primary_action": "Qualified photography and film commission enquiry",
     "primary_destination": "mailto:studio@maisonkrizsan.com",
     "status": "mailto target wired; inbox round-trip not verified"
   },
@@ -190,5 +190,18 @@
     "invented commissions/client names",
     "random masonry",
     "blank decorative space"
-  ]
+  ],
+  "copy_update": {
+    "strategy": "Beautiful photographs establish taste; explicit service copy establishes what can be commissioned. No abstract slogan before the offer is understood.",
+    "studio_heading": "Photography & film. Made for exceptional places.",
+    "services_heading": "Photography, film and visual direction.",
+    "footer": "Full-width Maison Krizsan wordmark, stacked on mobile; utility links and information pages.",
+    "inquiry_path": "Services → scope and process → email prefilled with project fields",
+    "without_fabrication": "No named client, paid commission, or result claims without permission and evidence"
+  },
+  "legal_pages": {
+    "privacy": "Transparent operational notice, review against actual hosting/email/analytics setup before publication",
+    "terms": "Portfolio usage and enquiries; no implied binding commission",
+    "accessibility": "Commitment and feedback contact; not a certification"
+  }
 }

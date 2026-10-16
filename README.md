@@ -1,9 +1,14 @@
-# Maison Krizsan V4 | Hospitality, architecture and destination imagery
+# Maison Krizsan | V5 — Clear, commission-led editorial website
 
-Static HTML, CSS and JavaScript. Full-screen cinematic homepage hero from supplied MP4, original photograph as fallback. Commercially clearer homepage copy, specific services and a continuous photographic Work page. Marcellus identity preserved.
+Maison Krizsan is an independent photography and film studio focused on hotels, resorts, architecture, private residences and destinations. This static HTML/CSS/JS release preserves the cinematic hero video, original Marcellus identity, responsive WebP gallery and interaction system while improving commercial clarity.
 
-- Main site: `index.html`; continuous photo archive: `work.html`
-- Media: `assets/video/maison-hero-v1.mp4` (optimized silent H.264) plus existing `assets/webp` image variants.
-- Primary commission: `mailto:studio@maisonkrizsan.com` with a prefilled brief; no backend forms invented.
-- See `CONVERSION_COPY_AUDIT.md`, `DEPLOY_V4.md`, `QA_V4.md` and `site-blueprint.json` for copy rationale, deploy instructions, QA and known unknowns.
-- Full website ZIP includes all assets. Changes-only ZIP updates just the source files/video and preserves existing WebP archives.
+### Site files
+- `index.html` — homepage and enquiry path
+- `work.html` — complete continuous Work gallery
+- `privacy.html`, `terms.html`, `accessibility.html` — plain-language information pages
+- `assets/webp/` — 74 original photos in 222 responsive WebP files
+- `assets/video/maison-hero-v1.mp4` — authentic still-based motion hero; real image remains fallback
+- `site-blueprint.json` — V5 conversion and design architecture
+- `V5_COPY_AND_LEGAL_NOTES.md`, `QA_V5.md`, `DEPLOY_V5.md` — rationale, tests and deployment
+
+Deploy the **contents** of the archive at the repository/publish root. The site is packaged for preview deployment, not asserted live or fully approved. Check the legal and CDN limitations in `QA_V5.md` before publication.
