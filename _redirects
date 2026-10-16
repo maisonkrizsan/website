@@ -1,5 +1,7 @@
-/work /work.html 301
-/work-2 /work.html 301
-/work-3 /work.html 301
-/work-2.html /work.html 301
-/work-3.html /work.html 301
+# Compatible with Cloudflare Pages and Netlify clean/pretty URLs.
+# Never redirect /work to /work.html: Cloudflare Pages normalizes
+# /work.html -> /work and the opposite rule causes ERR_TOO_MANY_REDIRECTS.
+/work-2 /work 301
+/work-3 /work 301
+/work-2.html /work 301
+/work-3.html /work 301
