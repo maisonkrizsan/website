@@ -1,6 +1,32 @@
 (() => {
   'use strict';
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = String(new Date().getFullYear()));
+  // Progressive video enhancement: first show the genuine still; only reveal motion on successful playback.
+  const heroVideo = document.getElementById('maison-hero-video');
+  if (heroVideo) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const saveData = navigator.connection?.saveData || false;
+    const canAnimate = () => !reduceMotion.matches && !saveData;
+    let requested = false;
+    function startHeroVideo() {
+      if (!canAnimate() || document.hidden) return;
+      if (!requested) { heroVideo.src = heroVideo.dataset.src; requested = true; }
+      const promise = heroVideo.play();
+      if (promise && typeof promise.catch === 'function') promise.catch(() => heroVideo.classList.remove('is-playing'));
+    }
+    function stopHeroVideo() { heroVideo.pause(); heroVideo.classList.remove('is-playing'); }
+    heroVideo.addEventListener('playing', () => heroVideo.classList.add('is-playing'));
+    heroVideo.addEventListener('error', stopHeroVideo);
+    heroVideo.addEventListener('stalled', () => { if (heroVideo.readyState < 2) heroVideo.classList.remove('is-playing'); });
+    reduceMotion.addEventListener?.('change', () => canAnimate() ? startHeroVideo() : stopHeroVideo());
+    document.addEventListener('visibilitychange', () => document.hidden ? stopHeroVideo() : startHeroVideo());
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) startHeroVideo(); else stopHeroVideo();
+      }, { threshold: 0.05 });
+      observer.observe(heroVideo.closest('.cover'));
+    } else startHeroVideo();
+  }
   const toggle = document.querySelector('.nav-toggle');
   const mobile = document.getElementById('mobile-nav');
   const onWork = document.body.classList.contains('page-work');

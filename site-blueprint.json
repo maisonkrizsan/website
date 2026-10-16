@@ -1,10 +1,10 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "3.0 architectural impact / photographer portfolio edit",
+  "revision": "4.0 focused commercial positioning + motion hero",
   "project": {
     "name": "MAISON KRIZSAN",
-    "primary_mode": "EXPLORE",
-    "secondary_mode": "CONVERT",
+    "primary_mode": "CONVERT",
+    "secondary_mode": "EXPLORE",
     "site_type": "home + continuous Work",
     "status": "built, awaiting owner aesthetic approval and live release gates"
   },
@@ -18,9 +18,9 @@
     ]
   },
   "conversion": {
-    "primary_action": "Commission enquiry",
+    "primary_action": "Qualified commission enquiry",
     "primary_destination": "mailto:studio@maisonkrizsan.com",
-    "status": "URL verified in code, inbox round trip untested"
+    "status": "mailto target wired; inbox round-trip not verified"
   },
   "creative_direction": {
     "name": "The House of Place, edited",
@@ -29,7 +29,10 @@
     "home_hero": {
       "id": 20,
       "source": "destination-20.jpg",
-      "why": "Emotive sunbeams and grand dome, strongest architectural moment from Batch 1 that survives desktop/mobile crop"
+      "why": "Emotive sunbeams and grand dome, strongest architectural moment from Batch 1 that survives desktop/mobile crop",
+      "video": "/assets/video/maison-hero-v1.mp4",
+      "fallback_still": "/assets/webp/batch-01/destination-20-1600.webp",
+      "playback": "muted, on visibility, intersection-gated; reduced-motion and save-data use still photo"
     },
     "work_cover": {
       "id": 7,
@@ -52,7 +55,9 @@
       "Visual direction"
     ],
     "copy_policy": "Clear commercial context without fake client claims or unsupported outcome statistics",
-    "filmmaking_proof": "No verifiable video file in this provided image-only library; portfolio work shows photos"
+    "filmmaking_proof": "No verifiable video file in this provided image-only library; portfolio work shows photos",
+    "commercial_positioning": "Photography and film that make people want to be there. Hospitality, architectural and destination imagery made for property marketing needs.",
+    "supported_deliverables": "Photography, property films/motion, visual direction. No explicit results, clients, lead counts, duration or price claims."
   },
   "homepage_sections": [
     "Full-frame architectural hero + service offer",
@@ -175,7 +180,9 @@
     "film reel/proof",
     "live mail delivery",
     "real-host Lighthouse/field performance",
-    "physical devices"
+    "physical devices",
+    "Hero motion is animated from one photograph; not proof of a commissioned property film.",
+    "Live CDN content type and response for each image size; previous reports of HTML returned for WebP."
   ],
   "prohibitions": [
     "generated fake portfolio proof",
