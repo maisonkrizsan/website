@@ -262,19 +262,108 @@
 }
 
 
-/* Maison V5.2: opt-in scroll-directed photography. Static imagery unless JS enables motion. */
-html.maison-motion :is(.editorial-photo, .work-figure)[data-cinema="slow"] img {
-  transform: translate3d(0, var(--maison-drift, 0px), 0) scale(var(--maison-zoom, 1.06));
-  transition: none;
-  backface-visibility: hidden;
-}
-html.maison-motion .editorial-photo[data-cinema="slow"]:hover img,
-html.maison-motion .work-figure[data-cinema="slow"]:hover img {
-  transform: translate3d(0, var(--maison-drift, 0px), 0) scale(calc(var(--maison-zoom, 1.06) * 1.014));
-}
-@media (prefers-reduced-motion: reduce) {
-  html.maison-motion :is(.editorial-photo, .work-figure)[data-cinema="slow"] img {
-    transform: none !important;
-    transition: none !important;
+
+/* V6 — Photographic choreography. Framed overscan, native scroll-linked progress.
+   No hero/video interference, no JS scroll loop and no moving typography. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    :is(.editorial-photo, .work-figure)[data-cinema="frame"] {
+      overflow: hidden;
+      isolation: isolate;
+      view-timeline-name: --maison-photo;
+      view-timeline-axis: block;
+    }
+    :is(.editorial-photo, .work-figure)[data-cinema="frame"] img {
+      animation: maison-frame-pan linear both;
+      animation-timeline: --maison-photo;
+      animation-range: entry 0% exit 100%;
+      will-change: transform;
+    }
+    @keyframes maison-frame-pan {
+      from { transform: translate3d(0, -2.4%, 0) scale(1.105); }
+      to { transform: translate3d(0, 2.4%, 0) scale(1.105); }
+    }
+    /* Diptychs reveal as a unified page composition rather than individual wobbling crops. */
+    .gallery-pair[data-cinema="reveal"], .editorial-duo[data-cinema="reveal"] {
+      animation: maison-pair-arrival linear both;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 68%;
+    }
+    @keyframes maison-pair-arrival {
+      from { opacity: .82; translate: 0 18px; }
+      to { opacity: 1; translate: 0 0; }
+    }
   }
 }
+@media (prefers-reduced-motion: reduce), (prefers-reduced-data: reduce) {
+  :is(.editorial-photo, .work-figure)[data-cinema] img,
+  .gallery-pair[data-cinema],.editorial-duo[data-cinema] {
+    animation: none !important; transform: none !important; translate: none !important;
+  }
+}
+@media (max-width: 760px) {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      @keyframes maison-frame-pan {
+        from { transform: translate3d(0,-1.3%,0) scale(1.07); }
+        to { transform: translate3d(0,1.3%,0) scale(1.07); }
+      }
+      @keyframes maison-pair-arrival {
+        from { opacity: .9; translate: 0 9px; }
+        to { opacity: 1; translate: 0 0; }
+      }
+    }
+  }
+}
+/* Work page: commissioned work is offered immediately, then again after the opening edit. */
+.work-intro-actions {display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;margin-top:29px;}
+.work-intro-actions a {font:500 12px/1.5 Manrope,Arial,sans-serif;letter-spacing:.015em;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:7px;}
+.work-intro-actions a:focus-visible {outline:2px solid currentColor;outline-offset:5px;}
+.work-intro .work-intro-side {max-width:360px;}
+.work-intro .work-intro-side p {max-width:340px;}
+.work-commission-bridge {background:#e9e4db;color:#242522;margin:clamp(28px,4vw,64px) 0 clamp(30px,5vw,70px);padding:clamp(38px,6vw,85px) clamp(28px,6vw,90px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px 56px;}
+.work-commission-bridge .bridge-eyebrow {font:500 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:25px;}
+.work-commission-bridge h2 {font:400 clamp(39px,4.5vw,73px)/1.08 Marcellus,Georgia,serif;letter-spacing:-.047em;max-width:800px;}
+.work-commission-bridge p {font:400 15px/1.7 Manrope,Arial,sans-serif;max-width:560px;margin-top:22px;color:#595950;}
+.work-commission-bridge .bridge-link {font:500 13px/1.4 Manrope,Arial,sans-serif;white-space:nowrap;text-decoration:none;border-bottom:1px solid #32362f;padding:0 0 10px;align-self:center;}
+.work-commission-bridge .bridge-link span {margin-left:14px;}
+@media (max-width:760px){
+  .work-intro .work-intro-side {margin-top:28px;}
+  .work-commission-bridge {grid-template-columns:1fr;padding:42px 25px 48px;gap:32px;}
+  .work-commission-bridge h2 {font-size:clamp(38px,9vw,58px);}
+  .work-commission-bridge .bridge-link {justify-self:start;}
+}
+/* The enquiry experience: editorial instead of a generic SaaS contact card. */
+.enquire-page{background:var(--paper);color:var(--ink);}
+.enquire-intro{padding:clamp(146px,16vw,222px) 0 clamp(65px,8vw,128px);border-bottom:1px solid #d8d2c9;}
+.enquire-intro .section-label {margin-bottom:28px;}
+.enquire-intro h1{font:400 clamp(55px,8vw,130px)/1.015 Marcellus,Georgia,serif;letter-spacing:-.06em;max-width:1150px;}
+.enquire-intro p:not(.section-label){font:400 clamp(16px,1.5vw,19px)/1.75 Manrope,Arial,sans-serif;max-width:690px;margin-top:40px;color:#62615c;}
+.enquire-layout{display:grid;grid-template-columns:minmax(230px,.67fr) minmax(0,1fr);gap:clamp(50px,10vw,170px);padding-block:clamp(70px,10vw,145px) clamp(120px,12vw,200px);}
+.enquire-sidebar h2{font:400 clamp(30px,3.5vw,45px)/1.12 Marcellus,Georgia,serif;letter-spacing:-.04em;}
+.enquire-sidebar p{font:400 15px/1.7 Manrope,Arial,sans-serif;color:#67655e;margin-top:25px;}
+.enquire-sidebar a{display:inline-block;margin-top:26px;font:500 14px/1.5 Manrope,Arial,sans-serif;text-underline-offset:6px;overflow-wrap:anywhere;}
+.project-form{display:grid;grid-template-columns:1fr 1fr;gap:29px 22px;}
+.project-form label{display:flex;flex-direction:column;gap:10px;font:500 12px/1.5 Manrope,Arial,sans-serif;letter-spacing:.02em;}
+.project-form .wide{grid-column:1/-1;}
+.project-form :is(input,select,textarea){appearance:none;outline-offset:3px;width:100%;min-height:53px;border:1px solid #a9a49b;border-radius:0;background:transparent;color:var(--ink);font:400 15px/1.5 Manrope,Arial,sans-serif;padding:13px 14px;}
+.project-form select{appearance:auto;}
+.project-form textarea{min-height:155px;resize:vertical;}
+.project-form :is(input,select,textarea):focus-visible{outline:2px solid #474740;}
+.project-form .form-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+.form-submit-row{display:flex;align-items:center;gap:16px 28px;flex-wrap:wrap;grid-column:1/-1;margin-top:6px;}
+.form-submit-row button{border:0;border-radius:0;color:#fbfaf6;background:#212521;padding:17px 24px;cursor:pointer;font:500 13px/1.4 Manrope,Arial,sans-serif;letter-spacing:.015em;min-width:192px;min-height:54px;}
+.form-submit-row button:hover{background:#394038;}
+.form-submit-row button:disabled{opacity:.55;cursor:progress;}
+.form-submit-row .form-note{font:400 12px/1.65 Manrope,Arial,sans-serif;color:#67655e;max-width:340px;}
+.form-feedback{grid-column:1/-1;font:500 14px/1.65 Manrope,Arial,sans-serif;min-height:18px;margin-top:3px;}
+.form-feedback[hidden],.email-fallback[hidden]{display:none;}
+.form-feedback.is-error{color:#8a3125;}
+.email-fallback{grid-column:1/-1;display:flex;flex-direction:column;align-items:start;gap:12px;padding:23px;background:#e6e1d8;}
+.email-fallback p{font:400 14px/1.65 Manrope,Arial,sans-serif;}
+.email-fallback a{text-underline-offset:5px;}
+@media(max-width:760px){.enquire-intro{padding-top:144px;padding-bottom:65px}.enquire-intro h1{font-size:clamp(52px,13vw,82px)}.enquire-layout{grid-template-columns:1fr;gap:60px}.project-form{grid-template-columns:1fr;gap:22px}.project-form .wide{grid-column:auto}.form-submit-row{display:block}.form-submit-row button{width:100%}.form-submit-row .form-note{margin-top:15px}.form-feedback,.email-fallback{grid-column:auto}}
+/* The enquiry page has a light opening, so the navigation must be ink, not white. */
+.page-enquire .site-header { color: var(--ink); }
+.page-enquire .nav-toggle span { background: var(--ink); }
+.page-enquire .site-header .nav-wrap { border-bottom:1px solid rgba(33,33,31,.17); }

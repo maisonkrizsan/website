@@ -1,12 +1,12 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "5.0 clarity, commission architecture and statement footer",
+  "revision": "6.0 — restrained photographic choreography + commission journey",
   "project": {
     "name": "MAISON KRIZSAN",
     "primary_mode": "CONVERT",
     "secondary_mode": "EXPLORE",
     "site_type": "home + continuous Work",
-    "status": "built, awaiting owner aesthetic approval and live release gates"
+    "status": "implemented locally; awaiting live function configuration, release QA and owner review"
   },
   "audience": {
     "primary_persona": "Creative, marketing and property decision-makers at hotels, private residences, destinations",
@@ -18,9 +18,11 @@
     ]
   },
   "conversion": {
-    "primary_action": "Qualified photography and film commission enquiry",
-    "primary_destination": "mailto:studio@maisonkrizsan.com",
-    "status": "mailto target wired; inbox round-trip not verified"
+    "primary_action": "qualified project enquiry",
+    "primary_destination": "/enquire",
+    "alternative": "mailto:studio@maisonkrizsan.com",
+    "delivery": "Cloudflare Pages Function POST /api/inquiry through Resend; requires verified sender domain, key and real send test; fail-closed with mailto fallback",
+    "status": "functional locally with mocked provider; production not configured or verified"
   },
   "creative_direction": {
     "name": "The House of Place, edited",
@@ -147,7 +149,8 @@
       62,
       70,
       25
-    ]
+    ],
+    "commission_invitation": "Direct after cover and inside first photographic edit; final enquiry remains"
   },
   "assets": {
     "photo_count": 74,
@@ -172,6 +175,11 @@
       "image integrity",
       "motion preference",
       "visual sequencing"
+    ],
+    "additional_checks": [
+      "backend mocking success/failure/unconfigured validation",
+      "CSS ViewTimeline movement measured during browser scrolling",
+      "selected visual renders on desktop and mobile"
     ]
   },
   "release_unknowns": [
@@ -203,5 +211,11 @@
     "privacy": "Transparent operational notice, review against actual hosting/email/analytics setup before publication",
     "terms": "Portfolio usage and enquiries; no implied binding commission",
     "accessibility": "Commitment and feedback contact; not a certification"
+  },
+  "motion": {
+    "method": "CSS native ViewTimeline on a few full-width photographic frames, gentle reveal on a few paired images; static fallback",
+    "reduced_motion": "disable all scroll-driven transitions",
+    "third_party_JS": false,
+    "old_V5_2_custom_scroll_loop": "removed"
   }
 }
