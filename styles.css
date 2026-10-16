@@ -260,3 +260,21 @@
   .contact .contact-cta { font-size: 17.5px; gap: 6px; }
   .contact .contact-cta span { font-size: 17px; }
 }
+
+
+/* Maison V5.2: opt-in scroll-directed photography. Static imagery unless JS enables motion. */
+html.maison-motion :is(.editorial-photo, .work-figure)[data-cinema="slow"] img {
+  transform: translate3d(0, var(--maison-drift, 0px), 0) scale(var(--maison-zoom, 1.06));
+  transition: none;
+  backface-visibility: hidden;
+}
+html.maison-motion .editorial-photo[data-cinema="slow"]:hover img,
+html.maison-motion .work-figure[data-cinema="slow"]:hover img {
+  transform: translate3d(0, var(--maison-drift, 0px), 0) scale(calc(var(--maison-zoom, 1.06) * 1.014));
+}
+@media (prefers-reduced-motion: reduce) {
+  html.maison-motion :is(.editorial-photo, .work-figure)[data-cinema="slow"] img {
+    transform: none !important;
+    transition: none !important;
+  }
+}

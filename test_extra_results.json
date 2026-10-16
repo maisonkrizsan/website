@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "overflow": false,
+    "errors": [],
+    "activated": true
+  },
+  {
+    "width": 760,
+    "overflow": false,
+    "errors": [],
+    "activated": true
+  },
+  {
+    "width": 1024,
+    "overflow": false,
+    "errors": [],
+    "activated": true
+  },
+  {
+    "width": 1920,
+    "overflow": false,
+    "errors": [],
+    "activated": true
+  },
+  {
+    "page": "index",
+    "saveDataDisables": true
+  },
+  {
+    "page": "work",
+    "saveDataDisables": true
+  },
+  {
+    "galleryModalOpened": true,
+    "EscapeClosed": true
+  }
+]

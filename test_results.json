@@ -1,0 +1,104 @@
+[
+  {
+    "page": "index",
+    "width": 390,
+    "imagesOptedIn": 6,
+    "before": {
+      "y": 1386,
+      "top": 437.046875,
+      "transform": "matrix(1.0583, 0, 0, 1.0583, 0, 1.9)",
+      "zoom": "1.0583",
+      "drift": "1.90px"
+    },
+    "after": {
+      "y": 1746,
+      "top": 77.046875,
+      "transform": "matrix(1.0683, 0, 0, 1.0683, 0, -2.17)",
+      "zoom": "1.0683",
+      "drift": "-2.17px"
+    },
+    "transformChanged": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "page": "index",
+    "width": 1440,
+    "imagesOptedIn": 6,
+    "before": {
+      "y": 1645,
+      "top": 251.4375,
+      "transform": "matrix(1.0759, 0, 0, 1.0759, 0, 2.27)",
+      "zoom": "1.0759",
+      "drift": "2.27px"
+    },
+    "after": {
+      "y": 2005,
+      "top": -108.5625,
+      "transform": "matrix(1.0858, 0, 0, 1.0858, 0, -2.58)",
+      "zoom": "1.0858",
+      "drift": "-2.58px"
+    },
+    "transformChanged": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "page": "index",
+    "reducedMotion": {
+      "enabled": false,
+      "transform": "none"
+    }
+  },
+  {
+    "page": "work",
+    "width": 390,
+    "imagesOptedIn": 6,
+    "before": {
+      "y": 761,
+      "top": 459.84375,
+      "transform": "matrix(1.0581, 0, 0, 1.0581, 0, 1.97)",
+      "zoom": "1.0581",
+      "drift": "1.97px"
+    },
+    "after": {
+      "y": 1121,
+      "top": 99.84375,
+      "transform": "matrix(1.0686, 0, 0, 1.0686, 0, -2.27)",
+      "zoom": "1.0686",
+      "drift": "-2.27px"
+    },
+    "transformChanged": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "page": "work",
+    "width": 1440,
+    "imagesOptedIn": 6,
+    "before": {
+      "y": 1296,
+      "top": 128.59375,
+      "transform": "matrix(1.0765, 0, 0, 1.0765, 0, 1.97)",
+      "zoom": "1.0765",
+      "drift": "1.97px"
+    },
+    "after": {
+      "y": 1656,
+      "top": -231.40625,
+      "transform": "matrix(1.0851, 0, 0, 1.0851, 0, -2.24)",
+      "zoom": "1.0851",
+      "drift": "-2.24px"
+    },
+    "transformChanged": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "page": "work",
+    "reducedMotion": {
+      "enabled": false,
+      "transform": "none"
+    }
+  }
+]

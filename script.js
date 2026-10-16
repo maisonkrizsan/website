@@ -27,6 +27,60 @@
       observer.observe(heroVideo.closest('.cover'));
     } else startHeroVideo();
   }
+  // V5.2 cinematic movement: a few editorial photographs, driven by scroll position.
+  // No scroll hijacking, no always-running timer, no third-party animation library.
+  (() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const reducedData = window.matchMedia('(prefers-reduced-data: reduce)');
+    const items = [...document.querySelectorAll('[data-cinema="slow"]')];
+    if (!items.length) return;
+    const saveData = () => !!navigator.connection?.saveData || reducedData.matches;
+    let active = new Set(), scheduled = false, enabled = false;
+    const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+    function refresh() {
+      scheduled = false;
+      if (!enabled || document.hidden) return;
+      const h = window.innerHeight;
+      for (const node of active) {
+        const r = node.getBoundingClientRect();
+        // 0 at entering from below; 1 when leaving above.
+        const p = clamp((h - r.top) / (h + r.height), 0, 1);
+        const isNarrow = window.innerWidth <= 760;
+        const zoom = (isNarrow ? 1.047 : 1.058) + p * (isNarrow ? .032 : .045);
+        const drift = (p - .5) * (isNarrow ? -13 : -22);
+        node.style.setProperty('--maison-zoom', zoom.toFixed(4));
+        node.style.setProperty('--maison-drift', drift.toFixed(2) + 'px');
+      }
+    }
+    function schedule() {
+      if (!scheduled && enabled) { scheduled = true; requestAnimationFrame(refresh); }
+    }
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (e.isIntersecting) active.add(e.target); else active.delete(e.target);
+      }
+      schedule();
+    }, { rootMargin: '80px 0px' }) : null;
+    function synchronize() {
+      enabled = !media.matches && !saveData();
+      document.documentElement.classList.toggle('maison-motion', enabled);
+      if (!enabled) {
+        active.clear();
+        items.forEach(n => { n.style.removeProperty('--maison-zoom'); n.style.removeProperty('--maison-drift'); });
+        return;
+      }
+      if (!observer) items.forEach(n => active.add(n));
+      schedule();
+    }
+    items.forEach(n => observer?.observe(n));
+    media.addEventListener?.('change', synchronize);
+    reducedData.addEventListener?.('change', synchronize);
+    navigator.connection?.addEventListener?.('change', synchronize);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    document.addEventListener('visibilitychange', schedule);
+    synchronize();
+  })();
   const toggle = document.querySelector('.nav-toggle');
   const mobile = document.getElementById('mobile-nav');
   const onWork = document.body.classList.contains('page-work');
