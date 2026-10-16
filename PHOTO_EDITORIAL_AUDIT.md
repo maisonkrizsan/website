@@ -1,50 +1,56 @@
-# MAISON KRIZSAN | Photographic edit, revision 2
+# Maison Krizsan V3 | Editorial red-team and first-frame decisions
 
-## The actual constraint
+## Objective
+Present the strongest real photography first, establishing instant desire **and** evidence of work across architecture, hospitality, residences and destinations. The correct output is not simply the warmest palette or most symmetrical image. It is a photographic argument: wonder → recognizable place → architectural craft → lived experience → commissioning.
 
-The first release prioritized a conveniently striking scene and a generic mix of travel/architecture images, rather than a portfolio's best proof of sophisticated hospitality visual storytelling. The goal of the new edit is **architectural specificity + atmosphere + technical composition + crop resilience + credibility as a commission**. A beautiful ocean view without a strong hospitality subject is not automatically a good homepage image.
+## Why the previous edit failed
 
-## Research: what Aman actually does
+**BLOCKER: wrong photographic hierarchy.** The earlier homepage led with an ordinary firelit seating arrangement and the Work cover used a generic sunlit window composition. Those aren't necessarily bad photographs, but neither proves a distinctive photographic eye in the opening three seconds. The photo library's remarkable architectural compositions, especially Batch 1, were hidden below them.
 
-Aman's creative partner Colville-Walker describes comprehensive **page-by-page art direction**, an immersive sense of each individual destination, and a content strategy developed with the imagery. See https://colville-walker.com/work/aman-branding-identity-development-and-expansion . Aman resort pages also describe actual architecture, materials, experiences and accommodations with useful specificity; minimal design is not the same as minimal information. See https://www.aman.com/resorts/amangiri/accommodation and https://www.aman.com/resorts/amangiri/gallery .
+**HIGH: wrong definition of luxury.** We optimized for beige warmth, symmetry and conventional hotel imagery. Aman imagery is not uniform beige: iconic identity is expressed through distinctive architecture, singular setting, careful light and cultural individuality. A theatrical chandelier, a monumental white coastal colonnade or a modern architectural sculpture can carry more visual authority than a perfectly warm hotel lobby.
 
-**Transfer for Maison:** lead with the actual photograph; edit around place, light and experience; clarify services and deliverables; do not borrow Aman photography, visual identity or booking UX.
+**HIGH: no role assignment.** Detail photographs (table shadows, pathways, undistinctive seating), which make excellent transitional frames, were presented as marquee proof. Supporting frames should create rhythm, not take the place of iconic establishing images.
 
-## Selection protocol
+**HIGH: sequence did not tell a story.** A gallery is not a shuffled inventory. Lead with a portfolio statement, then demonstrate range and control across a coherent chain of scale, light, geometry and location. Avoid repeating similar fireplace/lounge shots within the first several images.
 
-Inspected the actual 74-image contact library. Evaluated high-potential frames individually at their source dimensions and rendered **five different real-photo heroes** at 1440×900 and 390×844, using the actual site typography and overlaid controls. Weighed these attributes separately:
+**HIGH: visual QA was insufficient.** Technical page checks were misrepresented as aesthetic confidence. Layouts and the final edit must be evaluated at 390px and 1440px, with the first viewport and first ~20 images receiving the most attention. A reference mood image never counts as actual photographic proof.
 
-1. Subject and instant association with hospitality/residential work.
-2. Photographic craft: light, hierarchy, texture, framing and atmosphere.
-3. How much of the photograph survives desktop and mobile crops.
-4. Room for the Maison wordmark and commercial descriptor without excessive black overlay.
-5. Variety and pacing relative to neighboring images, not just individual appeal.
+**CRITICAL DEPLOYMENT ISSUE:** The user's screenshots also showed beige unloaded image regions and a Work redirect loop. The source package keeps root-relative WebP references and removes the inverse `/work` redirect. The live host must still be deployed with the entire assets directory and verified separately.
 
-These are **editorial judgments**, not measured image-quality scores or proof of image rights.
+## Research grounding, not visual copying
 
-## Hero decision
+- Aman art director **Colville-Walker** documents comprehensive page-by-page film and photography art direction and the preservation of each property's individuality: https://colville-walker.com/work/aman-branding-identity-development-and-expansion
+- **Matter Of Form** describes Aman's content strategy as bringing the detail and specificity of individual destinations into a unified site, rather than showing an unedited photo library: https://www.matterofform.com/work/aman
+- The **Amanzoe gallery** opens with recognizable arrival/architecture, water, landscape, living spaces and details in a coherent destination narrative: https://www.aman.com/resorts/amanzoe/gallery?page=1
 
-| Source image ID (internal only) | Decision | Why |
-|---|---|---|
-| 39, firelit lounge | **Selected, homepage** | Strong warm architecture, magnetic fire, layered furnishings and a coherent crop on mobile. Leads with lived atmosphere, not generic travel. |
-| 47, arched window room | **Selected, Work cover** | Distinctive architecture, luminous windows and convincing interior context. White-text contrast is harder; treated carefully. |
-| 74, warm circular lobby | Feature in gallery | Beautiful grand arrival, but background exit/signage and focal collisions weaken the hero. |
-| 54, chandelier upward view | Feature in gallery | Strong formal geometry, but unusual top-down orientation makes the overlaid claim compete with the chandelier. |
-| 15, coastal architecture | Work archive | Clearly connects building and sea, but harsh daylight and postcard composition lack the intimacy of the selected hero. |
-| 67, coastal residences at dusk | De-promoted from hero | Nice light; however distant small buildings and portrait-source cropping weaken architecture and readable negative space. |
+These examples concern hotel marketing, not a photographer portfolio. Maison must translate the principles while demonstrating its *own* capabilities. We do not claim Aman endorsed any individual photograph or that the selections are empirically conversion-optimized.
 
-## Homepage foreground, in the actual order
+## New first impressions
 
-**Hero 39:** Warm sense of arrival. **47:** Elegant architectural frame. **32 + 33:** Human-scale lounge followed by monumental arches. **74:** Full interior volume. **55 + 52:** Quiet detail and passageway. **56:** Grand staircase. **37 + 54:** Evening exterior paired with abstract interior form. **45:** The building in the broader coastal landscape. Each photograph is real source media provided for Maison, but no property/client name is asserted without evidence.
+**HOME HERO | Batch 1 image 20, destination-20.jpg.** Sunbeams through the monumental round interior and a multi-tiered chandelier: extraordinary light, shape, depth, and an emotional signature. Successfully tested in real Chromium screenshots at 390px and 1440px. *Trade-off:* intense flare/overexposure on the left, somewhat abstract; the commercial service descriptor must remain clearly visible.
 
-## The rest of the work
+**WORK COVER | Batch 1 image 7, destination-07.jpg.** Large sculptural chandelier against matched towering arched windows. Iconic architecture and highly graphic symmetry, sharply differentiating the new first impression from the previous ordinary window. Tested at 390px and 1440px. *Trade-off:* home and Work are both warm chandelier/architecture subjects. The next full-width seaside colonnade expands range immediately.
 
-The Work page is still one continuous scroll. Image 47 forms the first cover. Nineteen intentionally selected images lead the gallery, followed by coherent interiors, setting/destination images and remaining studies. All **74 distinct source photographs** remain represented once across that page, with no archive count displayed to visitors. Weak or repetitive images are not elevated to fake case studies. The local `image-manifest.json` continues to provide the source mapping.
+**FIRST WORK IMAGE | Batch 1 image 15, destination-15.jpg.** Grand white arcaded coastal building, ocean, planted pathway, palms. Strong proof that Maison photographs **place**, not just interior textures. Bright daytime conditions prevent it from winning the more emotional hero contest.
 
-## Copy strategy: the difference between silence and ambiguity
+**THE NEXT HIGH-VALUE IMAGES | Batch 1 IDs 10, 22, 8, 19, 21; plus 33, 54, 56, 63.** Dusk arrival, futuristic sculptural architecture, formal topiary, classical rotunda, architectural oculus, strong window symmetry, ceiling sculpture, staircase geometry and contemporary glass curve. These communicate a much broader architectural vocabulary.
 
-Homepage structure: a first-fold service descriptor; studio introduction answering who this is for; edited work; an image-story transition; distinct photography / film / visual direction scope; how the commission develops; direct inquiry. **Film is an available service, not an evidenced film portfolio in this image-only source set.** A genuine film sample will materially improve conversion once supplied.
+## What was demoted and why
 
-## Accuracy restrictions
+- `IMG_1250` (fireplace): warm, inviting and useful later, but familiar and largely decor-focused for a hero.
+- `IMG_1494` (arched-window dining): competent and luminous, but not astonishing enough as a Work cover.
+- `krizsan-standard-bg` (warm lobby): grand arrival, but visual distractions and generic room perspective keep it below stronger architectural events.
+- `IMG_0816` (seating/window): cozy but exit signage weakens first-tier luxury and does not establish a place.
+- `IMG_1581` (table shadows) and `IMG_1533` (walkway): useful transitions, not hero material.
+- Generic bright surf and repeated coastal views: retain in later archive for variety, not as top proof of premium architecture commissions.
 
-Photo copyright/publication releases, underlying client names, and which shoots were paid commissions are unverified. No invented hotel identities, case-study outcomes, awards or property attributions. The imagery's place and location should not be guessed from file names or resemblance.
+## Photo sequencing contract
+
+- Homepage: 1 monumental photographic hero + 11 deliberately selected examples arranged spread / diptych / spread / pause / diptych / spread / diptych / spread / diptych.
+- Work page: 1 architectural cover + an opening edit of 18 photographs selected for scale, composition, light and variety, followed by quieter interiors, locations and studies on the **same continuous page**.
+- No visitor-facing image numbers or inflated captions. All 74 originals and their responsive variants remain. No invented property names or implied commissioned clients.
+- `PHOTO_ORDER.json` provides the traceable current ordering, which future editors or build agents can use to recut the site. The deployed site is generated static HTML: editing this JSON alone does not automatically publish a new order.
+
+## Unresolved creative and commercial evidence
+
+The available library is weighted toward classical coastal hospitality and interiors, with some contemporary architecture. A premium hotel photo-commission portfolio would become stronger with verified **hero-grade twilight property exteriors, true rooms with clean styling, human-scale lifestyle moments and a genuine hospitality film reel**, if Maison owns publishable material of that caliber. We cannot invent or silently source replacement photographs from unrelated hotels. Image rights, hotel attribution and client provenance remain unverified.

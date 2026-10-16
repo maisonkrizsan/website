@@ -1,6 +1,4 @@
-# Compatible with Cloudflare Pages and Netlify clean/pretty URLs.
-# Never redirect /work to /work.html: Cloudflare Pages normalizes
-# /work.html -> /work and the opposite rule causes ERR_TOO_MANY_REDIRECTS.
+# Canonical /work route is managed by host clean-URL rules. No /work -> /work.html loop.
 /work-2 /work 301
 /work-3 /work 301
 /work-2.html /work 301
