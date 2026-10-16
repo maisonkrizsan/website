@@ -1,0 +1,14 @@
+{
+  "schema": "website-design-os/v1",
+  "project": {"name":"MAISON KRIZSAN", "site_type":"two-page static editorial", "primary_mode":"CONVERT", "secondary_mode":"EXPLORE", "status":"implementation-complete, live-deployment-unverified"},
+  "audience":{"primary_persona":"Hospitality property owners, GMs, hotel brand and marketing directors, distinctive residence and destination clients", "intent":"Understand the photographic eye and commission a visual archive of a property"},
+  "conversion":{"primary_action":"Begin a commission", "primary_cta_url":"mailto:studio@maisonkrizsan.com", "success_event":"Qualified inbound email received (requires live-mailbox check)", "analytics":{"provider":null,"required_events":[]}},
+  "creative_direction":{"thesis":"A quiet, image-first invitation to see the character of a place", "signature_motif":"Unhurried Marcellus type, warm ivory canvas, large sequential photographs", "must_preserve":["MAISON KRIZSAN wordmark styling", "Marcellus display and Manrope support", "original client-supplied photographic work", "simple direct inquiry"], "avoid":["generic AI gradients", "oversized animation effects", "invented client stories", "imitating Aman assets or logo"]},
+  "navigation":{"primary_links":[{"label":"The house","target":"index.html"},{"label":"The work","target":"work.html"},{"label":"Commissions","target":"index.html#commissions"},{"label":"Enquire","target":"index.html#enquire"}]},
+  "content":{"verified_claims":["Independent studio", "Photo and film services", "California with worldwide commission availability", "74 supplied photographs"], "social_proof":[], "project_cases":[], "unverified_claims_policy":"omit", "photo_provenance":"All photos supplied for this website by project owner; actual project affiliations and permissions not independently verified"},
+  "assets":{"count_original_images":74,"responsive_webp_count":222,"sizes_max_dimension_px":[960,1600,2560], "alt_policy":"Describe visual content without unproven property identity"},
+  "sections":{"home":["entry","statement","selected eight photographs","photographic interlude","commissions","approach","enquiry"], "work":[{"chapter":"The setting","count":22},{"chapter":"The stay","count":20},{"chapter":"The journey","count":17},{"chapter":"Observations","count":15}]},
+  "motion":{"tier":1,"scroll_behavior":"native","reduced_motion":"remove transitions", "webgl":false},
+  "delivery":{"format":"static HTML/CSS/JavaScript with local WebP images", "build_step":false,"hosting":"any static web host"},
+  "qa":{"viewports":[320,390,768,1024,1440,1920],"menu_keyboard":true,"dialog":true,"lazy_loaded_images":true,"full_local_assets":true,"live_delivery":false}
+}

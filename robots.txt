@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maisonkrizsan.com/sitemap.xml
