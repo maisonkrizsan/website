@@ -367,3 +367,50 @@
 .page-enquire .site-header { color: var(--ink); }
 .page-enquire .nav-toggle span { background: var(--ink); }
 .page-enquire .site-header .nav-wrap { border-bottom:1px solid rgba(33,33,31,.17); }
+
+
+/* V7: commission form belongs in the homepage decision moment.
+   A quiet editorial panel after the invitation, not a separate compulsory step. */
+.contact--with-form { padding-bottom:clamp(88px,9vw,150px); }
+.contact--with-form .contact-inner {align-items:center;}
+.contact--with-form .contact-headline,.contact--with-form .contact-details{min-width:0;}
+.contact--with-form .contact-email-note{font:400 13px/1.7 Manrope,Arial,sans-serif; margin-top:22px; opacity:.85; overflow-wrap:anywhere;}
+.contact--with-form .contact-email-note a{text-decoration:underline;text-underline-offset:5px;}
+.contact--with-form .contact-details > p:first-child{max-width:475px;}
+.home-form-shell {padding-top:clamp(55px,7vw,108px);}
+.home-form-panel{background:#f2efe8;color:#222320;padding:clamp(27px,5.4vw,80px);}
+.home-form-heading{display:grid;grid-template-columns:.68fr 1fr;gap:clamp(22px,6vw,90px);align-items:end;margin-bottom:clamp(32px,4.5vw,64px);padding-bottom:clamp(22px,2.8vw,42px);border-bottom:1px solid #ccc6bb;}
+.home-form-heading .section-label{color:#555249;align-self:start;}
+.home-form-heading p:last-child{font:400 clamp(16px,1.5vw,20px)/1.6 Manrope,Arial,sans-serif;max-width:610px;}
+.home-form-panel .project-form{gap:27px 34px;}
+.home-form-panel .project-form :is(input,select,textarea){background:#f8f6f1;border-color:#a8a198;}
+.home-form-panel .project-form :is(input,select,textarea):focus-visible{outline:2px solid #252823;outline-offset:2px;}
+.home-form-panel .project-form .form-submit-row{margin-top:12px;}
+.home-form-panel .project-form button[type=submit]{padding:20px 36px;font-size:14px;min-height:60px;}
+.home-form-panel .project-form label{position:relative;gap:9px;}
+.home-form-panel .project-form .field-requirement{position:absolute;top:0;right:0;font:400 12px/1.5 Manrope,Arial,sans-serif;letter-spacing:.015em;color:#77736a;}
+/* Standalone enquiry page uses the same labelled fields, and remains available from Work. */
+.page-enquire .project-form label{position:relative;}
+.page-enquire .project-form .field-requirement{position:absolute;top:0;right:0;font:400 12px/1.5 Manrope,Arial,sans-serif;color:#77736a;}
+@media(max-width:1024px){
+ .home-form-heading{grid-template-columns:1fr;gap:12px;}
+ .contact--with-form h2{max-width:100%;}
+}
+@media(max-width:760px){
+ .contact--with-form .contact-inner{text-align:center;}
+ .contact--with-form .contact-details > p:first-child{margin-inline:auto;}
+ .contact--with-form .contact-email-note{margin-inline:auto;}
+ .home-form-shell{padding-top:48px;}
+ .home-form-panel{padding:33px clamp(18px,5.5vw,28px) 38px;}
+ .home-form-heading{margin-bottom:30px;padding-bottom:24px;}
+ .home-form-heading p:last-child{font-size:15px;line-height:1.65;}
+ .home-form-panel .project-form{gap:24px;}
+ .home-form-panel .project-form :is(input,select,textarea){font-size:16px;min-height:55px;}
+ .home-form-panel .project-form textarea{min-height:150px;}
+ .home-form-panel .form-submit-row button{width:100%;padding-inline:10px;}
+ .home-form-panel .project-form .form-note{max-width:none;}
+}
+@media(max-width:360px){
+ .contact--with-form h2{font-size:clamp(48px,14vw,66px);}
+ .home-form-panel{padding-inline:17px;}
+}

@@ -1,6 +1,6 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "6.0 — restrained photographic choreography + commission journey",
+  "revision": "7.0 embedded homepage commission form, Work standalone alternative",
   "project": {
     "name": "MAISON KRIZSAN",
     "primary_mode": "CONVERT",
@@ -18,11 +18,13 @@
     ]
   },
   "conversion": {
-    "primary_action": "qualified project enquiry",
-    "primary_destination": "/enquire",
-    "alternative": "mailto:studio@maisonkrizsan.com",
-    "delivery": "Cloudflare Pages Function POST /api/inquiry through Resend; requires verified sender domain, key and real send test; fail-closed with mailto fallback",
-    "status": "functional locally with mocked provider; production not configured or verified"
+    "primary_action": "Qualified commission enquiry",
+    "homepage_destination": "/#enquire (embedded full form)",
+    "work_destination": "/enquire (dedicated form maintained for Work visitors)",
+    "form_endpoint": "POST /api/inquiry, Cloudflare Pages Function",
+    "delivery": "Resend, requires verified RESEND_API_KEY and RESEND_FROM secrets",
+    "fallback": "On unconfirmed delivery, offer prefilled mailto link without a false success message",
+    "status": "UI and simulated provider responses tested; live inbox delivery not yet verified"
   },
   "creative_direction": {
     "name": "The House of Place, edited",
@@ -62,12 +64,12 @@
     "supported_deliverables": "Photography, property films/motion, visual direction. No explicit results, clients, lead counts, duration or price claims."
   },
   "homepage_sections": [
-    "Full-frame architectural hero + service offer",
-    "Clear studio positioning",
-    "Architectural and atmosphere-led work",
-    "Commission services",
+    "Cinematic image/video hero linking to Work and embedded /#enquire",
+    "Studio positioning and commercial usefulness",
+    "Selected photographic work",
+    "Photography / Film / Visual direction services",
     "Commission process",
-    "Contact"
+    "Full project enquiry form within concluding commission section"
   ],
   "work_page": {
     "total_originals": 74,
@@ -190,7 +192,9 @@
     "real-host Lighthouse/field performance",
     "physical devices",
     "Hero motion is animated from one photograph; not proof of a commissioned property film.",
-    "Live CDN content type and response for each image size; previous reports of HTML returned for WebP."
+    "Live CDN content type and response for each image size; previous reports of HTML returned for WebP.",
+    "Cloudflare production form deployment and Resend key configuration",
+    "Real form inbox round-trip test"
   ],
   "prohibitions": [
     "generated fake portfolio proof",
