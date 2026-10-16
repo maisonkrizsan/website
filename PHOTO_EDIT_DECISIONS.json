@@ -1,0 +1,167 @@
+{
+  "editorial_judgment_not_objective_image_scoring": true,
+  "shortlist": {
+    "39": {
+      "priority": "HERO",
+      "rationale": "Firelight, symmetrical architectural frame, rich atmosphere; survives portrait crop."
+    },
+    "47": {
+      "priority": "WORK_COVER",
+      "rationale": "Daylit arched interior, graceful geometry, hospitality context."
+    },
+    "74": {
+      "priority": "FEATURE",
+      "rationale": "Grand warm lobby, interior scale and arrival."
+    },
+    "32": {
+      "priority": "FEATURE",
+      "rationale": "Intimate arched-window seating; strong interiority, mobile portrait."
+    },
+    "33": {
+      "priority": "FEATURE",
+      "rationale": "Symmetrical arched windows and chandelier; sequence partner for 32."
+    },
+    "56": {
+      "priority": "FEATURE",
+      "rationale": "Staircase viewed from above; compelling pattern and hospitality interior."
+    },
+    "55": {
+      "priority": "FEATURE",
+      "rationale": "Quiet table detail with raking light; visual relief and tactile setting."
+    },
+    "52": {
+      "priority": "FEATURE",
+      "rationale": "Brick arrival path enclosed in foliage; architectural story context."
+    },
+    "54": {
+      "priority": "FEATURE",
+      "rationale": "Looking directly up at chandelier; strong geometric focal point."
+    },
+    "37": {
+      "priority": "FEATURE",
+      "rationale": "Nighttime illuminated property; evening variation and ambience."
+    },
+    "45": {
+      "priority": "FEATURE",
+      "rationale": "Architecture and coastline together; commercial sense of place."
+    },
+    "15": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Clear coastline/property relationship; hard midday light."
+    },
+    "67": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Coastal homes at dusk; atmospheric but small architecture / tight portrait crop."
+    },
+    "2": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Lush courtyard; previously rejected as hero, useful lower in archive."
+    },
+    "63": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Striking modern architecture; less obviously hospitality."
+    },
+    "66": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Coastal sunset color and palms; atmosphere without clear property."
+    },
+    "17": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Coastline beauty but weak hospitality proof and bright azure."
+    },
+    "38": {
+      "priority": "WORK_SECONDARY",
+      "rationale": "Hotel interior atrium detail, strong leading lines, visually busy."
+    }
+  },
+  "homepage_hero": 39,
+  "work_page_cover": 47,
+  "selected_homepage": [
+    47,
+    32,
+    33,
+    74,
+    55,
+    52,
+    56,
+    37,
+    54,
+    45
+  ],
+  "gallery_order": [
+    47,
+    74,
+    32,
+    33,
+    39,
+    55,
+    52,
+    56,
+    54,
+    37,
+    45,
+    15,
+    67,
+    58,
+    63,
+    46,
+    44,
+    64,
+    38,
+    10,
+    49,
+    50,
+    29,
+    35,
+    36,
+    57,
+    48,
+    24,
+    14,
+    20,
+    16,
+    7,
+    4,
+    2,
+    65,
+    53,
+    51,
+    30,
+    31,
+    12,
+    66,
+    43,
+    40,
+    41,
+    42,
+    68,
+    69,
+    71,
+    72,
+    73,
+    17,
+    18,
+    13,
+    11,
+    34,
+    23,
+    8,
+    1,
+    3,
+    5,
+    6,
+    9,
+    19,
+    21,
+    22,
+    25,
+    26,
+    27,
+    28,
+    59,
+    60,
+    61,
+    62,
+    70
+  ]
+}

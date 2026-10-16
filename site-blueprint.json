@@ -1,0 +1,187 @@
+{
+  "schema": "website-design-os/v1",
+  "revision": "2.0 editorial recut",
+  "project": {
+    "name": "MAISON KRIZSAN",
+    "primary_mode": "EXPLORE",
+    "secondary_mode": "CONVERT",
+    "site_type": "home + continuous Work",
+    "status": "built, awaiting owner aesthetic approval and live release gates"
+  },
+  "audience": {
+    "primary_persona": "Creative, marketing and property decision-makers at hotels, private residences, destinations",
+    "required_beliefs": [
+      "Maison works in architecture, hospitality, residential and place-based imagery",
+      "Photo examples demonstrate judgement",
+      "The studio offers photography, film, visual direction",
+      "Enquiry is easy"
+    ]
+  },
+  "conversion": {
+    "primary_action": "Commission enquiry",
+    "primary_destination": "mailto:studio@maisonkrizsan.com",
+    "status": "URL verified in code, inbox round trip untested"
+  },
+  "creative_direction": {
+    "name": "The House of Place, edited",
+    "principle": "An authoritative photograph wins attention; unambiguous copy confirms services; composition and pace embody discernment.",
+    "reference": "Colville-Walker Aman page-by-page art direction and property specificity, not copied Aman design.",
+    "home_hero": {
+      "id": 39,
+      "source": "IMG_1250-1791706031",
+      "mobile_crop": "50% center",
+      "decision": "Wins cross-device mood, focal point, architectural legibility after tests"
+    },
+    "work_cover": {
+      "id": 47,
+      "source": "IMG_1494"
+    },
+    "type": "Marcellus and Manrope",
+    "layout": [
+      "photo cover",
+      "wide cinematic images",
+      "ordered diptychs",
+      "one-off framed narrative pause"
+    ],
+    "motion": "no custom scroll; subtle CSS; reduced motion safe"
+  },
+  "content": {
+    "offer": [
+      "Photography",
+      "Film",
+      "Visual direction"
+    ],
+    "copy_policy": "Clear commercial context without fake client claims or unsupported outcome statistics",
+    "filmmaking_proof": "No verifiable video file in this provided image-only library; portfolio work shows photos"
+  },
+  "homepage_sections": [
+    "Hero and clear offer",
+    "Studio introduction",
+    "Selected work and image-story transition",
+    "Commissionable services",
+    "How a commission works",
+    "Contact"
+  ],
+  "work_page": {
+    "total_originals": 74,
+    "hero_counted_in_total": true,
+    "additional_gallery_images": 73,
+    "art_directed_first_edit": 19,
+    "ordered_ids": [
+      47,
+      74,
+      32,
+      33,
+      39,
+      55,
+      52,
+      56,
+      54,
+      37,
+      45,
+      15,
+      67,
+      58,
+      63,
+      46,
+      44,
+      64,
+      38,
+      10,
+      49,
+      50,
+      29,
+      35,
+      36,
+      57,
+      48,
+      24,
+      14,
+      20,
+      16,
+      7,
+      4,
+      2,
+      65,
+      53,
+      51,
+      30,
+      31,
+      12,
+      66,
+      43,
+      40,
+      41,
+      42,
+      68,
+      69,
+      71,
+      72,
+      73,
+      17,
+      18,
+      13,
+      11,
+      34,
+      23,
+      8,
+      1,
+      3,
+      5,
+      6,
+      9,
+      19,
+      21,
+      22,
+      25,
+      26,
+      27,
+      28,
+      59,
+      60,
+      61,
+      62,
+      70
+    ]
+  },
+  "assets": {
+    "photo_count": 74,
+    "webp_variants": 222,
+    "hero_source": "user-provided responsive WebP library",
+    "licensed_for_publication": "unverified",
+    "client/property identities": "unverified"
+  },
+  "qa": {
+    "breakpoints": [
+      320,
+      390,
+      768,
+      1024,
+      1440,
+      1920
+    ],
+    "check": [
+      "real photo crops",
+      "responsive text",
+      "link and lightbox navigation",
+      "image integrity",
+      "motion preference",
+      "visual sequencing"
+    ]
+  },
+  "release_unknowns": [
+    "owner visual approval",
+    "publication rights",
+    "film reel/proof",
+    "live mail delivery",
+    "real-host Lighthouse/field performance",
+    "physical devices"
+  ],
+  "prohibitions": [
+    "generated fake portfolio proof",
+    "showing image counts or IDs",
+    "invented commissions/client names",
+    "random masonry",
+    "blank decorative space"
+  ]
+}
