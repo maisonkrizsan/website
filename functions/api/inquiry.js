@@ -22,6 +22,34 @@ export async function onRequestPost({request,env}) {
   if (name.length<2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !SERVICES.has(service) || brief.length<20 || brief.length>6000) {
     return response({ok:false,message:'Please provide your name, valid email, service and project details.'},400);
   }
+  // Bot challenge is enforced at the edge only when both keys have been configured.
+  // Existing working forms remain available until the owner enables Turnstile.
+  const hasPublicKey = Boolean(String(env.TURNSTILE_SITE_KEY || '').trim());
+  const hasSecretKey = Boolean(String(env.TURNSTILE_SECRET_KEY || '').trim());
+  if (hasPublicKey !== hasSecretKey) {
+    return response({ok:false,message:'Security verification is temporarily unavailable. Please email the studio.'},503);
+  }
+  if (hasSecretKey) {
+    const token = trim(data.get('cf-turnstile-response'),2049);
+    if (!token || token.length>2048) {
+      return response({ok:false,message:'Please complete the security verification before sending.'},403);
+    }
+    let verify;
+    try {
+      const vresp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method:'POST', headers:{'content-type':'application/json'},
+        body:JSON.stringify({secret:env.TURNSTILE_SECRET_KEY,response:token})
+      });
+      if (!vresp.ok) throw Error('Verification service failure');
+      verify = await vresp.json();
+    } catch {
+      return response({ok:false,message:'Security verification is temporarily unavailable. Please email the studio.'},503);
+    }
+    const currentHost = new URL(request.url).hostname;
+    if (!verify?.success || verify.hostname !== currentHost || verify.action !== 'maison_enquiry') {
+      return response({ok:false,message:'Security verification was not accepted. Please try again.'},403);
+    }
+  }
   if (!env.RESEND_API_KEY || !env.RESEND_FROM) {
     return response({ok:false,message:'The enquiry form is not yet connected. Please use email instead.'},503);
   }
