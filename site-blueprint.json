@@ -1,12 +1,12 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "7.0 embedded homepage commission form, Work standalone alternative",
+  "revision": "10.0 buyer-ready commission portfolio and clear scopes",
   "project": {
     "name": "MAISON KRIZSAN",
     "primary_mode": "CONVERT",
     "secondary_mode": "EXPLORE",
-    "site_type": "home + continuous Work",
-    "status": "implemented locally; awaiting live function configuration, release QA and owner review"
+    "site_type": "Homepage + continuous Work + shareable Commission Portfolio + dedicated enquiry alternative",
+    "status": "implemented and tested locally; live release and publication approvals outstanding"
   },
   "audience": {
     "primary_persona": "Creative, marketing and property decision-makers at hotels, private residences, destinations",
@@ -24,7 +24,8 @@
     "form_endpoint": "POST /api/inquiry, Cloudflare Pages Function",
     "delivery": "Resend, requires verified RESEND_API_KEY and RESEND_FROM secrets",
     "fallback": "On unconfirmed delivery, offer prefilled mailto link without a false success message",
-    "status": "UI and simulated provider responses tested; live inbox delivery not yet verified"
+    "status": "User previously showed a genuine Zoho inbox delivery for V7; V10 preserves backend and passed mocked regression tests; production V10 submission is untested",
+    "commission_presentation": "/commission and /assets/maison-commission-portfolio.pdf"
   },
   "creative_direction": {
     "name": "The House of Place, edited",
@@ -64,12 +65,14 @@
     "supported_deliverables": "Photography, property films/motion, visual direction. No explicit results, clients, lead counts, duration or price claims."
   },
   "homepage_sections": [
-    "Cinematic image/video hero linking to Work and embedded /#enquire",
-    "Studio positioning and commercial usefulness",
-    "Selected photographic work",
-    "Photography / Film / Visual direction services",
+    "Cinematic original image/video hero",
+    "What Maison creates and why",
+    "Selected photographic evidence",
+    "Founder-led studio and independent photography studies",
+    "Capabilities: photography, film, visual direction",
+    "Two buyer-facing engagement formats and shareable commission portfolio",
     "Commission process",
-    "Full project enquiry form within concluding commission section"
+    "Embedded full project enquiry form"
   ],
   "work_page": {
     "total_originals": 74,
@@ -221,5 +224,17 @@
     "reduced_motion": "disable all scroll-driven transitions",
     "third_party_JS": false,
     "old_V5_2_custom_scroll_loop": "removed"
+  },
+  "commission_portfolio": {
+    "path": "/commission",
+    "download": "/assets/maison-commission-portfolio.pdf",
+    "purpose": "Help a hotel owner, marketing director or approving team understand work, scope, next step",
+    "provenance": "User-provided independent photo archive only; no client logos, paid commission claims, impact stats, testimonials or invented film proof",
+    "formats": [
+      "Focused property shoot",
+      "Complete property story"
+    ],
+    "scope_policy": "Written scope including usage, fees, schedule and final deliverables before work begins",
+    "primary_action": "/#enquire"
   }
 }

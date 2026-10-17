@@ -10,7 +10,7 @@ def test(condition,label):
     checks+=1
     if not condition: errors.append(label)
 
-pages=['index.html','work.html','enquire.html','privacy.html','terms.html','accessibility.html']
+pages=['index.html','work.html','commission.html','enquire.html','privacy.html','terms.html','accessibility.html']
 for file in pages:
     f=root/file
     test(f.exists(),f'{file} missing')
@@ -24,10 +24,14 @@ for file in pages:
         test((root/target).is_file(),f'{file}: broken {path}')
     for path in re.findall(r'/(assets/webp/[^\s,\"\']+\.webp)',s):
         test((root/path).is_file(),f'{file}: missing srcset {path}')
-for name in ['functions/api/inquiry.js','functions/api/form-config.js','_routes.json','sitemap.xml','robots.txt','enquire.js']:
+for name in ['functions/api/inquiry.js','functions/api/form-config.js','_routes.json','sitemap.xml','robots.txt','enquire.js','assets/maison-commission-portfolio.pdf']:
     test((root/name).is_file(),f'{name} missing')
 imgs=list((root/'assets/webp').glob('**/*.webp'))
 test(len(imgs)==222,f'expected 222 WebP variants, found {len(imgs)}')
+test('https://maisonkrizsan.com/commission' in (root/'sitemap.xml').read_text(), 'commission page missing in sitemap')
+test((root/'assets/maison-commission-portfolio.pdf').read_bytes().startswith(b'%PDF'), 'portfolio PDF invalid signature')
+test('href="/commission"' in (root/'index.html').read_text(), 'homepage missing commission portfolio route')
+test('href="/commission"' in (root/'work.html').read_text(), 'Work page missing commission portfolio route')
 for f in imgs:
     with f.open('rb') as inp: hdr=inp.read(12)
     test(hdr[:4]==b'RIFF' and hdr[8:12]==b'WEBP',f'{f.name}: corrupt WebP header')
@@ -41,6 +45,7 @@ def check_live(base):
         '/': 'text/html',
         '/work': 'text/html',
         '/enquire': 'text/html',
+        '/commission': 'text/html',
         '/assets/webp/batch-01/destination-20-1600.webp': 'image/webp',
         '/assets/webp/batch-02/IMG_0826-1791704242-2560.webp':'image/webp',
         '/assets/webp/batch-02/IMG_1566-2560.webp':'image/webp',
