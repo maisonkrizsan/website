@@ -1,6 +1,6 @@
 {
   "schema": "website-design-os/v1",
-  "revision": "10.0 buyer-ready commission portfolio and clear scopes",
+  "revision": "11.0 simplified commission journey",
   "project": {
     "name": "MAISON KRIZSAN",
     "primary_mode": "CONVERT",
@@ -236,5 +236,14 @@
     ],
     "scope_policy": "Written scope including usage, fees, schedule and final deliverables before work begins",
     "primary_action": "/#enquire"
-  }
+  },
+  "website_pages": [
+    "/",
+    "/work",
+    "/enquire",
+    "/privacy.html",
+    "/terms.html",
+    "/accessibility.html"
+  ],
+  "conversion_decision": "Homepage form is primary; two concise commission types live inside existing process section; Work retains direct /enquire"
 }

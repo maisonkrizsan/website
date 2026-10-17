@@ -1,19 +1,15 @@
-# Maison Krizsan - V10 Commission-Ready Portfolio
+# MAISON KRIZSAN | V11 — One clear path to a commission
 
-This repository contains the Maison Krizsan static website, 74 distinct original photographs in 222 responsive WebP variants, the cinematic homepage hero, the founder-led Studio presentation, a **shareable commission portfolio** and the existing Cloudflare/Resend enquiry backend.
+A photograph-led hospitality and architectural photography studio website. V11 **removes the separate Commission Portfolio page and PDF**, and consolidates two engagement options into the existing “How a commission works” section on the homepage.
 
-## Core visitor journeys
-- `/` - cinematic homepage, real-photo proof, specific service formats, **full embedded enquiry form**.
-- `/work` - 74-photo editorial gallery with early direct enquiry and commission-portfolio links.
-- `/commission` - shareable buyer presentation: proof, two ways to commission, scope, process, founder and direct enquiry.
-- `/assets/maison-commission-portfolio.pdf` - four-page presentation for internal decision-makers.
-- `/enquire` - dedicated form alternative for Work-page visitors.
+## Pages
+- `/` — cinematic homepage, Work highlights, founder, services, how commissions work, live enquiry form
+- `/work` — continuous photographic portfolio with direct enquiry links
+- `/enquire` — existing dedicated form for visitors entering from Work
+- Privacy, Terms, Accessibility — existing informational pages
 
 ## Deployment
-See `DEPLOY_V10.md` before uploading to the Cloudflare Pages-linked GitHub repository. V10 does **not** require new Resend credentials or a change to existing working form logic.
+Add the files in `MAISON_KRIZSAN_V11_SIMPLIFIED_PATCH.zip` and delete the retired `commission.html` and `assets/maison-commission-portfolio.pdf` from the repository. `_redirects` maps previous `/commission` URLs into the homepage. Preserve Cloudflare secrets and existing Functions.
 
-## Validation
-Run `python tests/site_health.py` and `node tests/backend.test.mjs` locally. Read `QA_V10.md` for the adapted browser results and outstanding release gates.
-
-## Truth policy
-The included photographs are independent portfolio studies, not represented as paid client projects. Pricing, guaranteed outputs, results, logos and testimonials are intentionally omitted until evidenced and approved. Publication rights and film proof remain external gates.
+## QA
+Run `python tests/site_health.py` and `node tests/backend.test.mjs`; then inspect all page paths and form delivery on the actual Cloudflare host. Source checks are not a substitute for live deployment acceptance.
