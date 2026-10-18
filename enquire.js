@@ -21,6 +21,8 @@
       `Property / company: ${data.get('company') || ''}`,
       `Location: ${data.get('location') || ''}`,
       `Service: ${data.get('service') || ''}`,
+      `Project context: ${data.get('project_context') || ''}`,
+      `Desired outcome: ${data.get('outcome') || ''}`,
       `Timing: ${data.get('timing') || ''}`,
       '', 'Project:', String(data.get('brief') || '')
     ].join('\n');
