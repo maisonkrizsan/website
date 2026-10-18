@@ -279,3 +279,153 @@
   } else visible=true;
   measure();updateMode();start();
 })();
+
+/*
+ * MAISON KRIZSAN / WORK INDEX
+ * Read-only DOM enhancement for the existing Work page.
+ * Preserves the original seventy-three gallery figures, cover photograph,
+ * chapter narratives, fullscreen viewer and existing CTA destinations.
+ */
+(() => {
+  'use strict';
+  if (!document.body.classList.contains('page-work') || document.body.classList.contains('maison-work-index')) return;
+
+  const galleries = [...document.querySelectorAll('.page-work .work-gallery')];
+  const figures = galleries.flatMap(gallery => [...gallery.querySelectorAll('figure.work-figure[data-photo-id]')]);
+  if (!galleries.length || figures.length < 30) return;
+
+  // Keep genuine HTML image elements and previously bound lightbox click handlers.
+  // Do not replace, clone, or alter the original image URL / identity.
+  document.body.classList.add('maison-work-index');
+  const style = document.createElement('style');
+  style.id = 'maison-work-index-style';
+  style.textContent = `
+/* === MAISON WORK — The Photographic Index === */
+.page-work.maison-work-index { --index-gap: clamp(12px, 1.6vw, 25px); }
+.page-work.maison-work-index .work-intro {
+  padding-block: clamp(76px, 8vw, 128px) clamp(48px, 5vw, 78px);
+  gap: clamp(25px, 5vw, 76px);
+}
+.page-work.maison-work-index .work-intro h2 {font-size:clamp(41px,4.6vw,68px)}
+.page-work.maison-work-index .work-gallery {
+  display:block !important;
+  columns:4 !important;
+  column-gap:var(--index-gap) !important;
+  width:calc(100% - 2*var(--gutter));
+  max-width:1700px;
+  margin-inline:auto;
+  min-width:0;
+}
+.page-work.maison-work-index .work-chapter .work-gallery {
+  width:100%;max-width:none;
+}
+.page-work.maison-work-index .work-gallery > :is(.gallery-spread,.gallery-pair,.gallery-solo) {
+  display:contents !important;
+}
+.page-work.maison-work-index .work-gallery .work-figure {
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  max-width:none !important;
+  margin:0 0 var(--index-gap) !important;
+  padding:0 !important;
+  background:#ded8cc;
+  break-inside:avoid-column !important;
+  -webkit-column-break-inside:avoid;
+  overflow:hidden;
+  position:relative;
+}
+.page-work.maison-work-index .work-gallery .gallery-open {
+  display:block !important;position:static !important;
+  width:100% !important;height:auto !important;min-height:0 !important;
+  padding:0 !important;margin:0 !important;
+  border:none;background:transparent;
+  cursor:zoom-in;overflow:hidden;
+}
+.page-work.maison-work-index .work-gallery .gallery-open img {
+  display:block !important;position:static !important;
+  width:100% !important;height:auto !important;
+  max-width:100% !important;max-height:none !important;
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  transform:none !important;animation:none !important;
+  opacity:1;transition:opacity .42s ease !important;
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .page-work.maison-work-index .work-gallery .gallery-open:hover img {opacity:.82;}
+}
+.page-work.maison-work-index .work-gallery .gallery-open:focus-visible {
+  outline:2px solid #2a2b27;outline-offset:4px;
+}
+.page-work.maison-work-index .work-chapter {
+  padding-top:clamp(66px,7.3vw,115px);
+}
+.page-work.maison-work-index .chapter-intro {
+  padding-bottom:clamp(24px,3.2vw,45px);
+  gap:20px;
+}
+.page-work.maison-work-index .chapter-intro h2 {
+  font-size:clamp(38px,3.7vw,55px);
+}
+.page-work.maison-work-index .work-commission-bridge {
+  display:none !important; /* redundant; Work intro and final enquiry remain */
+}
+@media(max-width:1199px){
+  .page-work.maison-work-index .work-gallery{columns:3 !important;}
+}
+@media(max-width:820px){
+  .page-work.maison-work-index .work-gallery{columns:2 !important;}
+  .page-work.maison-work-index .work-intro{padding-block:78px 44px;}
+  .page-work.maison-work-index .work-chapter{padding-top:76px;}
+}
+@media(max-width:600px){
+  .page-work.maison-work-index {--index-gap:11px;}
+  .page-work.maison-work-index .work-gallery{columns:2 !important;}
+  .page-work.maison-work-index .work-intro{padding-block:73px 35px;}
+  .page-work.maison-work-index .work-intro h2{font-size:clamp(40px,9vw,53px);}
+  .page-work.maison-work-index .work-chapter{padding-top:68px;}
+  .page-work.maison-work-index .chapter-intro{padding-bottom:26px;}
+  .page-work.maison-work-index .chapter-intro h2{font-size:clamp(36px,8.1vw,46px);}
+  .page-work.maison-work-index .work-commission-bridge{margin-top:78px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .page-work.maison-work-index .work-gallery img{transition:none !important;}
+}
+`;
+  document.head.append(style);
+
+  for (const fig of figures) {
+    fig.removeAttribute('data-cinema');
+    const img = fig.querySelector('img');
+    if (!img) continue;
+    // Existing srcset uses correct aspect-specific actual width descriptors.
+    img.sizes = '(max-width:820px) 44vw, (max-width:1199px) 30vw, 22vw';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+  }
+  // Existing full-width call-to-action should be seen after the gallery, not
+  // squeezed into a masonry column or interrupting the opening photographs.
+  const bridge = galleries[0].querySelector('.work-commission-bridge');
+  // The site already has a commission link above the archive and a full
+  // commissioning invitation at its end. The intermediate sales billboard
+  // interrupts the photographic index, so remove only that duplicate.
+  bridge?.remove();
+
+  const chapters = [...document.querySelectorAll('.page-work .work-chapter')];
+  const last = chapters.at(-1);
+  const finalFigures = last ? [...last.querySelectorAll('figure.work-figure')] : [];
+  // The legacy 'Further studies' chapter holds one detail photograph.
+  // Put that frame with the interior studies and remove the empty chapter.
+  if (chapters.length >= 2 && finalFigures.length === 1) {
+    const interiorGallery = chapters[0].querySelector('.work-gallery');
+    if (interiorGallery) {
+      const wrap = document.createElement('div');
+      wrap.className = 'gallery-solo';
+      wrap.append(finalFigures[0]);
+      interiorGallery.append(wrap);
+      last.remove();
+    }
+  }
+})();
